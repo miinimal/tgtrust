@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tgtrust"
+version = "0.1.0"
+description = "Anonymous, accountable AI agents for Telegram on TON"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Aleksandr Shcherbakov" }]
+requires-python = ">=3.11"
+keywords = ["telegram", "ton", "ai-agents", "blind-signatures", "sybil-resistance"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = ["cryptography>=42"]
+
+[project.optional-dependencies]
+server = ["fastapi>=0.110", "uvicorn>=0.29"]
+dev = ["pytest>=8", "fastapi>=0.110", "httpx>=0.27", "uvicorn>=0.29"]
+browser = ["playwright>=1.40"]
+
+[project.urls]
+Homepage = "https://github.com/miinimal/tgtrust"
+Source = "https://github.com/miinimal/tgtrust"
+Issues = "https://github.com/miinimal/tgtrust/issues"
+Changelog = "https://github.com/miinimal/tgtrust/blob/main/CHANGELOG.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["tgtrust"]
+
+[tool.setuptools.package-data]
+tgtrust = ["webapp/*"]

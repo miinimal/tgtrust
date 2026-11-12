@@ -1,0 +1,62 @@
+name: checks
+# Runs the whole proof of the repository: Python suite (with the browser code under Node and the
+# holder page in Chromium), contract suite, and a build of the server image.
+# Only on pull requests into main, pushes to main and manual runs, to keep runner minutes low.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pip install -e ".[dev,browser]"
+      - run: python -m playwright install --with-deps chromium
+      - name: Python suite (nothing may be skipped)
+        run: |
+          pytest -q -rs | tee pytest.log
+          if grep -q "skipped" pytest.log; then echo "a test was skipped: Node or Chromium is missing"; exit 1; fi
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: contracts/package-lock.json
+      - run: npm ci
+      - run: npm test
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the server image and check it serves the API and the holder page
+        run: |
+          docker build -f deploy/Dockerfile -t tgtrust:ci .
+          docker run --rm --entrypoint python tgtrust:ci -c "
+          from tgtrust.service import WEBAPP_DIR, WEBAPP_FILES
+          missing = [n for n in WEBAPP_FILES if not (WEBAPP_DIR / n).is_file()]
+          assert not missing, missing
+          print('image ok:', sorted(WEBAPP_FILES))"

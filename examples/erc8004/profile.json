@@ -1,0 +1,7 @@
+{
+  "name": "tgtrust demo agent",
+  "description": "Demo agent of the tgtrust standard: registered with an issuer credential (one Telegram account per issuer epoch), stake checked on TON testnet, owner never revealed.",
+  "image": "https://github.com/miinimal.png",
+  "services": [],
+  "x402Support": false
+}

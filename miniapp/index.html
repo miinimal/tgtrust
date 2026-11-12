@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>tgtrust: init data check</title>
+<style>
+  /* Telegram sets --tg-theme-* in light and dark themes; the fallbacks follow the OS theme outside Telegram. */
+  :root { color-scheme: light dark; }
+  body {
+    margin: 0; padding: 16px; font: 16px/1.4 system-ui, sans-serif;
+    background: var(--tg-theme-bg-color, Canvas); color: var(--tg-theme-text-color, CanvasText);
+  }
+  main { max-width: 32rem; margin: 0 auto; }
+  h1 { font-size: 1.25rem; margin: 0 0 12px; }
+  dl { margin: 0 0 16px; }
+  dt { color: var(--tg-theme-hint-color, GrayText); font-size: .85rem; margin-top: 10px; }
+  dd { margin: 2px 0 0; word-break: break-word; }
+  button {
+    width: 100%; padding: 14px; font: inherit; font-weight: 600; border: 0; border-radius: 10px;
+    background: var(--tg-theme-button-color, #2481cc); color: var(--tg-theme-button-text-color, #fff);
+  }
+  button[disabled] { opacity: .5; }
+  p.note { color: var(--tg-theme-hint-color, GrayText); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Init data check</h1>
+  <dl>
+    <dt>Opened inside Telegram</dt><dd id="inside">checking…</dd>
+    <dt>Init data present</dt><dd id="present">checking…</dd>
+    <dt>Length (characters)</dt><dd id="length">-</dd>
+    <dt>auth_date</dt><dd id="authdate">-</dd>
+  </dl>
+  <button id="copy" type="button" disabled>Copy init data</button>
+  <p id="status" class="note" role="status"></p>
+  <p class="note">This page makes no network requests and stores nothing. Init data is shown only as its length
+  and auth_date; the button puts the full string on your clipboard, which you save to a file and check with
+  <code>python -m tgtrust.telegram_sig</code>. Treat the string as private until it expires.</p>
+</main>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var app = window.Telegram && window.Telegram.WebApp;
+  var data = app && typeof app.initData === "string" ? app.initData : "";
+
+  if (app && typeof app.ready === "function") { app.ready(); }
+  $("inside").textContent = data ? "yes" : (app ? "Telegram script loaded, but no init data" : "no");
+  $("present").textContent = data ? "yes" : "no";
+  if (!data) {
+    $("status").textContent = app
+      ? "No init data. Open this page as a Mini App from a bot (menu button or Main Mini App link), not from a plain link."
+      : "Not opened inside Telegram. Open it as a Mini App from your bot; a normal browser has no init data to copy.";
+    return;
+  }
+  $("length").textContent = String(data.length);
+  var auth = new URLSearchParams(data).get("auth_date");
+  var n = auth && /^[0-9]+$/.test(auth) ? Number(auth) : NaN;
+  $("authdate").textContent = isNaN(n) ? "missing" : n + " (" + new Date(n * 1000).toISOString() + ")";
+
+  var button = $("copy");
+  button.disabled = false;
+  button.addEventListener("click", function () {
+    function done(ok) { $("status").textContent = ok ? "Copied. Paste it into a file now." : "Copy failed. Tap the button again."; }
+    function fallback() {
+      var t = document.createElement("textarea");
+      t.value = app.initData; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(t);
+      done(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(app.initData).then(function () { done(true); }, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>

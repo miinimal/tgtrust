@@ -1,0 +1,34 @@
+{
+  "active": true,
+  "description": "Demo agent of the tgtrust standard: registered with an issuer credential (one Telegram account per issuer epoch), stake checked on TON testnet, owner never revealed.",
+  "image": "https://github.com/miinimal.png",
+  "name": "tgtrust demo agent",
+  "registrations": [],
+  "services": [],
+  "supportedTrust": [],
+  "tgtrust": {
+    "agent_key": "c92220c304e26c3bf7809f0006b5c815f2628e370e19b68728b8180080921551",
+    "badge_checked_at": 1794437072,
+    "evm_evidence": [],
+    "issuer_key_id": "455ab7792859f113",
+    "level": "verified",
+    "one_account_per_issuer_epoch": true,
+    "registered_at": 1794437071,
+    "spec": {
+      "eip": "https://eips.ethereum.org/EIPS/eip-8004",
+      "read": "2026-11-11",
+      "status": "Draft"
+    },
+    "stake": {
+      "amount_gram": "0",
+      "checked": true,
+      "checked_at": 1794437071,
+      "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+      "found": false,
+      "network": "testnet",
+      "withdrawing": false
+    }
+  },
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "x402Support": false
+}

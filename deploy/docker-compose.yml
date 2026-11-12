@@ -1,0 +1,32 @@
+services:
+  issuer:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: tgtrust-issuer
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TGTRUST_ISSUER_KEY_FILE: /data/issuer.pem
+      TGTRUST_DB_PATH: /data/issuer.db
+      TGTRUST_REGISTRY_DB_PATH: /data/registry.db
+      TGTRUST_DEALS_DB_PATH: /data/deals.db
+      TGTRUST_DISPUTES_DB_PATH: /data/disputes.db
+    volumes:
+      - tgtrust-data:/data
+    ports:
+      - "127.0.0.1:8080:8080"
+  bot:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: tgtrust-bot
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      TGTRUST_BADGE_URL: http://issuer:8080/v1
+    command: ["python", "-m", "tgtrust.bot"]
+    depends_on:
+      - issuer
+volumes:
+  tgtrust-data:

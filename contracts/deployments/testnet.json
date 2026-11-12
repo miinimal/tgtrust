@@ -1,0 +1,15 @@
+{
+  "network": "testnet",
+  "address": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+  "addressRaw": "0:f474d1a8e86267c6aec37391d67047e805623c52453067afb0ee0a709bc1b5d7",
+  "codeHash": "2BECCEFADD85A18AA5A6A13C5A99F3DBC00F663CE0152936798FDF8C0A70BC50",
+  "tolkVersion": "1.5.0",
+  "config": {
+    "minStake": "0.5",
+    "cooldownSeconds": 120,
+    "changeDelaySeconds": 120,
+    "victimShareBps": 7000
+  },
+  "deployedAt": "2026-11-07T00:32:56.114Z",
+  "explorer": "https://testnet.tonscan.org/address/kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w"
+}

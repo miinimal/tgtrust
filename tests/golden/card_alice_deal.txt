@@ -1,0 +1,14 @@
+AGENT CARD f210a37d…2707
+Key: f210a37d6378bb8c6f398d3035b79bf57be2aee6dd446e535ea237f94c152707
+Registration: registered 2026-11-12 01:24 UTC, issuer key 5211cf4b6d059c00 [source: badge endpoint]
+Badge level: verified [source: badge endpoint]
+Stake: unknown, no TON stake source configured, nothing was read [source: TON stake read, not performed]
+Deals: 1 confirmed deals, 0 with staked counterparties, 1 distinct counterparties [source: ledger]
+Latest deal id: feee51e7962f2964847fef8670c2101e [source: ledger]
+Latest deal description: Demo task: alice summarises a 3-page text for bob (demo data, no real work) [source: description supplied off-ledger; its SHA-256 equals memo_hash 458babb38b2dd502… recorded in the ledger]
+Latest deal counterparty: d510fa15…1323 [source: ledger]; badge level verified [source: counterparty badge endpoint]
+Latest deal signatures: the ledger accepts a deal only after verifying the signatures of both parties, and recorded this one (signatures themselves are not stored) [source: ledger]
+Latest deal note: demo record, local ledger [source: example capture file]
+Disputes: 0 filed against (0 upheld, 0 open), 0 filed by this agent [source: ledger]
+Telegram check: issuer credential, one Telegram account per issuer epoch. Owner identity is not checked and not revealed. [source: badge endpoint]
+Checked: 2026-11-12 01:24 UTC [source: badge endpoint]

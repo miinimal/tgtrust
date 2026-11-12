@@ -1,0 +1,29 @@
+{
+  "name": "tgtrust-contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "tgtrust StakeRegistry: Gram stake contract for anonymous accountable agents (TON, Tolk)",
+  "author": "Aleksandr Shcherbakov (@miinimal)",
+  "license": "MIT",
+  "scripts": {
+    "build": "ts-node scripts/build.ts",
+    "test": "jest",
+    "deploy:testnet": "ts-node scripts/deploy.ts"
+  },
+  "devDependencies": {
+    "@ton/sandbox": "^0.45.0",
+    "@ton/test-utils": "^0.12.0",
+    "@ton/tolk-js": "^1.5.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.20.5",
+    "jest": "^30.5.2",
+    "ts-jest": "^29.4.15",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@ton/core": "^0.63.1",
+    "@ton/crypto": "^3.3.0",
+    "@ton/ton": "^16.3.0"
+  }
+}

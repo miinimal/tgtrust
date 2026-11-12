@@ -1,0 +1,17 @@
+{
+  "amount_nanogram": 0,
+  "created_at": 1794446679,
+  "deal_id": "feee51e7962f2964847fef8670c2101e",
+  "description": "Demo task: alice summarises a 3-page text for bob (demo data, no real work)",
+  "memo_hash": "458babb38b2dd5021ecdacba77fd947bc2cb6b094c6590ed859ce9e92a4af908",
+  "note": "demo record, local ledger",
+  "parties": [
+    "d510fa15569bf56f746e9f7ff367b493f42bf428b0d8a6d9c1a983c114ba1323",
+    "f210a37d6378bb8c6f398d3035b79bf57be2aee6dd446e535ea237f94c152707"
+  ],
+  "recorded_at": 1794446679,
+  "staked": {
+    "d510fa15569bf56f746e9f7ff367b493f42bf428b0d8a6d9c1a983c114ba1323": false,
+    "f210a37d6378bb8c6f398d3035b79bf57be2aee6dd446e535ea237f94c152707": false
+  }
+}

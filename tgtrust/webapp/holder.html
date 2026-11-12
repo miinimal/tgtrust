@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://telegram.org; style-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<title>tgtrust: agent credential</title>
+<link rel="stylesheet" href="holder.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1 data-t="title">Agent credential</h1>
+    <p class="lead" data-t="lead">One credential per Telegram account. The issuer signs it without seeing it, so nobody, the issuer included, can tell which account stands behind your agent.</p>
+  </header>
+
+  <section class="card" aria-labelledby="checks-title">
+    <h2 id="checks-title" data-t="checks">Checks</h2>
+    <dl class="rows">
+      <div class="row"><dt data-t="check_tg">Opened inside Telegram</dt><dd id="check-tg" class="pending">…</dd></div>
+      <div class="row"><dt data-t="check_issuer">Issuer key</dt><dd id="check-issuer" class="pending">…</dd></div>
+      <div class="row"><dt data-t="check_epoch">Issuer epoch</dt><dd id="check-epoch" class="pending">…</dd></div>
+      <div class="row" id="row-premium" hidden><dt data-t="check_premium">Requirement</dt><dd data-t="premium_needed">Telegram Premium</dd></div>
+    </dl>
+  </section>
+
+  <section class="card" id="choose" aria-labelledby="choose-title">
+    <h2 id="choose-title" data-t="choose">Which agent is this for?</h2>
+    <label class="option">
+      <input type="radio" name="mode" value="own" checked>
+      <span>
+        <strong data-t="own_title">My agent already has a key</strong>
+        <small data-t="own_text">Safest. The private key never leaves the agent; paste only its public key.</small>
+      </span>
+    </label>
+    <div id="own-fields">
+      <label for="agent-key" data-t="own_label">Agent public key (64 hex characters)</label>
+      <input id="agent-key" type="text" inputmode="latin" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="64" placeholder="e3b0c442…">
+      <p class="hint" data-t="own_hint">Create one with: python -m tgtrust.client new-key --out agent.key</p>
+    </div>
+    <label class="option" id="option-new">
+      <input type="radio" name="mode" value="new">
+      <span>
+        <strong data-t="new_title">Create a key for a new agent here</strong>
+        <small data-t="new_text">Quickest. This page makes the key, registers the agent and shows you the key once.</small>
+      </span>
+    </label>
+    <p class="hint" id="new-unsupported" hidden data-t="new_unsupported">This browser cannot create agent keys. Use the first option.</p>
+  </section>
+
+  <section class="card notice" id="resume" hidden>
+    <h2 data-t="resume_title">Unfinished request found</h2>
+    <p data-t="resume_text">This device holds a request that was sent but not finished. Finish it: the issuer answers the same request again.</p>
+    <p class="mono" id="resume-agent"></p>
+  </section>
+
+  <section class="card notice" id="stale" hidden>
+    <h2 data-t="stale_title">Saved request no longer fits</h2>
+    <p data-t="stale_text">The issuer key changed since this request was made, so it cannot be finished. Remove it to start again.</p>
+    <button type="button" class="secondary" id="discard" data-t="discard">Remove saved request</button>
+  </section>
+
+  <button type="button" id="go" disabled data-t="go">Get credential</button>
+  <p id="status" role="status" aria-live="polite"></p>
+
+  <section class="card" id="result" hidden aria-labelledby="result-title">
+    <h2 id="result-title"></h2>
+    <p id="result-text"></p>
+    <label for="result-file" id="result-label"></label>
+    <textarea id="result-file" readonly rows="9" spellcheck="false"></textarea>
+    <button type="button" id="copy" data-t="copy">Copy</button>
+    <p class="hint" id="result-next"></p>
+    <p class="warning" id="result-warning" hidden data-t="key_warning">Whoever holds this file controls the agent. It exists only on this device and is shown only here. Save it somewhere safe before you leave.</p>
+    <button type="button" class="secondary" id="forget" data-t="forget">I saved it. Remove it from this device</button>
+  </section>
+
+  <details class="card">
+    <summary data-t="how_title">What this page sends</summary>
+    <ul>
+      <li data-t="how_1">To the issuer: Telegram's signed init data and a blinded request. The request reveals nothing about the credential or the agent.</li>
+      <li data-t="how_2">The issuer answers with a blind signature. This page removes the blinding and checks the result twice.</li>
+      <li data-t="how_3">If you let this page register a new agent, it also sends the finished credential and the agent's public key. Registering from here right after issuance lets the service guess the link by timing; for strict anonymity use your own key and register later from the agent.</li>
+      <li data-t="how_4">Nothing is sent anywhere else. The private key and the blinding secret never leave this device.</li>
+    </ul>
+  </details>
+</main>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script type="module" src="holder.js"></script>
+</body>
+</html>

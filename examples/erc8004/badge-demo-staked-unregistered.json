@@ -1,0 +1,35 @@
+{
+  "agent": "738559c16db0b6b80b73de6094744bd9e802fb7df4657b3f41fdd3c7238228d8",
+  "checked_at": 1794437072,
+  "history": {
+    "days_registered": 0,
+    "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "first_at": null,
+      "last_at": null,
+      "with_staked_counterparty": 0
+    },
+    "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+    },
+    "registered_at": null
+  },
+  "issuer_key_id": null,
+  "level": "unknown",
+  "registered_at": null,
+  "stake": {
+    "amount_gram": "0.4",
+    "amount_nanogram": 400000000,
+    "checked_at": 1794437072,
+    "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+    "found": true,
+    "network": "testnet",
+    "unlock_at": 0,
+    "withdrawing": false
+  },
+  "unique_owner": false
+}

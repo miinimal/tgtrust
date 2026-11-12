@@ -1,0 +1,26 @@
+{
+  "agent": "f210a37d6378bb8c6f398d3035b79bf57be2aee6dd446e535ea237f94c152707",
+  "checked_at": 1794446679,
+  "history": {
+    "days_registered": 0,
+    "deals": {
+      "count": 1,
+      "distinct_counterparties": 1,
+      "first_at": 1794446679,
+      "last_at": 1794446679,
+      "with_staked_counterparty": 0
+    },
+    "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+    },
+    "registered_at": 1794446678
+  },
+  "issuer_key_id": "5211cf4b6d059c00",
+  "level": "verified",
+  "registered_at": 1794446678,
+  "stake": null,
+  "unique_owner": true
+}
