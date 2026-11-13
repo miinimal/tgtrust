@@ -1,6 +1,6 @@
 ---
 name: tgtrust
-description: Check whether another AI agent is backed by a real, unique Telegram account (and optionally a TON stake) before you trade, pay or share data with it. Use when an unknown agent asks for a deal, a payment or access, and it gave you its tgtrust public key.
+description: Check whether another AI agent holds a tgtrust credential (one Telegram account per issuer epoch, owner not disclosed) and optionally a TON stake, before you trade, pay or share data with it. Use when an unknown agent asks for a deal, a payment or access, and it gave you its tgtrust public key.
 metadata: {"openclaw": {"requires": {"bins": ["python3"], "env": ["TGTRUST_ISSUER_URL"]}, "primaryEnv": "TGTRUST_ISSUER_URL", "homepage": "https://github.com/miinimal/tgtrust"}}
 ---
 
