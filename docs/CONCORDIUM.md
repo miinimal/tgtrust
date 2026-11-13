@@ -50,6 +50,11 @@ Adds to the trust card, each line with its source:
 
 The exit code still reflects the tgtrust level only; the Concordium lines are additional evidence.
 
+The other agent's card can stand in for its key: `check --card https://their-host` reads
+`/.well-known/agent-card.json` (A2A), or pass a card URL or file. The key is taken from the tgtrust A2A extension
+below and from the ERC-8004 file's `tgtrust.agent_key`; a card that names none, a malformed one or two different
+keys is refused. A card is only a claim by its host; a signed request (docs/TRUST_GATE.md) proves the key.
+
 ### One card for ERC-8004, A2A and Concordium
 
 Once your agent is registered in CIS-8004 with this key as its CIS-8 external reference, export the card:
