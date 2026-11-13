@@ -200,3 +200,56 @@ def test_check_with_concordium_adds_registry_lines(world, capsys, monkeypatch):
     assert _cli(["check", "--agent", stranger.hex, "--url", "http://issuer/v1", "--concordium", "testnet", "--json"],
                 transport=transport) == 2
     assert json.loads(capsys.readouterr().out)["concordium"]["badge_valid"] is True
+
+
+def _card_with(key: str, *, file_key: str | None = None) -> dict:
+    from tgtrust.erc8004 import TGTRUST_EXTENSION_URI
+    card = {"name": "demo", "capabilities": {"extensions": [
+        {"uri": "https://example.org/other", "params": {"agentKey": "00" * 32}},
+        {"uri": TGTRUST_EXTENSION_URI, "required": False, "params": {"agentKey": key, "level": "verified"}}]}}
+    if file_key is not None:
+        card["tgtrust"] = {"agent_key": file_key}
+    return card
+
+
+def test_check_card_reads_the_key_from_a_card(world, tmp_path, capsys, monkeypatch):
+    import tgtrust.client as client_mod
+    client, transport, telegram = world
+    agent = AgentIdentity.generate()
+    client.register(agent, *client.obtain_credential(agent, telegram.init_data({"id": 5151}, auth_date=int(time.time()))))
+
+    path = tmp_path / "agent-card.json"
+    path.write_text(json.dumps(_card_with(agent.hex.upper(), file_key=agent.hex)))
+    assert _cli(["check", "--card", str(path), "--url", "http://issuer/v1"], transport=transport) == 0
+    out = capsys.readouterr().out
+    assert f"names agent key {agent.hex}" in out and "only a claim" in out and "Badge level: verified" in out
+
+    fetched = []
+    monkeypatch.setattr(client_mod, "card_fetch", lambda url: fetched.append(url) or json.dumps(
+        _card_with(agent.hex)).encode())
+    assert _cli(["check", "--card", "https://agent.example", "--url", "http://issuer/v1", "--json"],
+                transport=transport) == 0
+    assert fetched == ["https://agent.example/.well-known/agent-card.json"]
+    assert json.loads(capsys.readouterr().out)["card_note"].startswith("Card https://agent.example names")
+
+
+@pytest.mark.parametrize("card, why", [
+    ({"name": "no key"}, "no tgtrust agent key"),
+    (_card_with("zz"), "not 64 hex"),
+    (_card_with("ab" * 32, file_key="cd" * 32), "two different"),
+    ([1, 2], "not a JSON object"),
+])
+def test_check_card_refuses_cards_without_one_clear_key(world, tmp_path, capsys, card, why):
+    _, transport, _ = world
+    path = tmp_path / "card.json"
+    path.write_text(json.dumps(card))
+    assert _cli(["check", "--card", str(path), "--url", "http://issuer/v1"], transport=transport) == 1
+    assert why in capsys.readouterr().out
+
+
+def test_check_card_url_must_be_https_and_agent_or_card_not_both(world, capsys):
+    _, transport, _ = world
+    assert _cli(["check", "--card", "http://agent.example", "--url", "http://issuer/v1"], transport=transport) == 1
+    assert "https://" in capsys.readouterr().out
+    with pytest.raises(SystemExit):
+        _cli(["check", "--card", "x.json", "--agent", "ab" * 32, "--url", "http://issuer/v1"], transport=transport)

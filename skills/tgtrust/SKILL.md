@@ -44,6 +44,11 @@ Add `--json` to get the raw badge instead. Add `--concordium mainnet` (or `testn
 Concordium's Agent Registry: whether this key is bound to a Concordium account, which is opened only with an
 identity from an identity provider (the person is not disclosed), and whether its badge is valid.
 
+If the other agent publishes an A2A or ERC-8004 card instead, pass the card in place of the key:
+`--card https://their-host` (reads `/.well-known/agent-card.json`), `--card <card URL>` or `--card <file>`.
+The card only claims a key; it does not prove the host holds it. Before trusting the host with money, have it
+sign a request with that key (see `docs/TRUST_GATE.md` in the repo).
+
 ## As an MCP server
 
 If your runtime speaks MCP, add a stdio server instead of running commands:

@@ -341,7 +341,10 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
     register.add_argument("--url", help="issuer API base, if different from the one in the file")
     check = sub.add_parser("check", allow_abbrev=False,
                            help="print the trust card of another agent; exit 0 only if it is verified or staked")
-    check.add_argument("--agent", required=True, help="the other agent's public key, 64 hex characters")
+    who = check.add_mutually_exclusive_group(required=True)
+    who.add_argument("--agent", help="the other agent's public key, 64 hex characters")
+    who.add_argument("--card", help="the other agent's A2A / ERC-8004 card: a file, an https URL, or an https "
+                                    "origin (then /.well-known/agent-card.json is read)")
     check.add_argument("--url", default=os.environ.get("TGTRUST_ISSUER_URL"),
                        help="issuer API base, e.g. https://issuer.example/v1 (default: $TGTRUST_ISSUER_URL)")
     check.add_argument("--json", action="store_true", help="print the raw badge JSON instead of the card")
@@ -382,6 +385,81 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
 
 concordium_fetch = None  # tests replace this with a recorded-reply fetcher
 
+WELL_KNOWN_CARD = "/.well-known/agent-card.json"
+CARD_MAX_BYTES = 256 * 1024
+
+
+def _fetch_card(url: str, timeout: float = 10.0) -> bytes:
+    import urllib.request
+
+    req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "tgtrust-client/0.1"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310 - https only, checked by the caller
+        data = resp.read(CARD_MAX_BYTES + 1)
+    if len(data) > CARD_MAX_BYTES:
+        raise ValueError(f"card is larger than {CARD_MAX_BYTES} bytes")
+    return data
+
+
+card_fetch = _fetch_card  # tests replace this
+
+
+def card_source(card: str) -> tuple[str, bool]:
+    """(where to read the card, is it a URL). An https origin gets the A2A well-known path."""
+    from urllib.parse import urlsplit
+
+    if "://" not in card:
+        return card, False
+    parts = urlsplit(card)
+    if parts.scheme != "https" or not parts.netloc:
+        raise ValueError("a card URL must start with https://")
+    if parts.path in ("", "/"):
+        return f"https://{parts.netloc}{WELL_KNOWN_CARD}", True
+    return card, True
+
+
+def agent_key_from_card(card: dict) -> str:
+    """The tgtrust agent key a card claims. Raises ValueError when it names none, a bad one, or two different ones.
+
+    Read from the A2A extension (capabilities.extensions, uri = the tgtrust extension, params.agentKey) and from
+    the ERC-8004 file's ``tgtrust.agent_key``. A card is only a claim: it does not prove its host holds the key.
+    """
+    from .erc8004 import TGTRUST_EXTENSION_URI
+
+    if not isinstance(card, dict):
+        raise ValueError("the card is not a JSON object")
+    found = []
+    caps = card.get("capabilities")
+    exts = caps.get("extensions") if isinstance(caps, dict) else None
+    for ext in exts if isinstance(exts, list) else []:
+        if isinstance(ext, dict) and ext.get("uri") == TGTRUST_EXTENSION_URI:
+            params = ext.get("params")
+            found.append(params.get("agentKey") if isinstance(params, dict) else None)
+    tg = card.get("tgtrust")
+    if isinstance(tg, dict) and "agent_key" in tg:
+        found.append(tg.get("agent_key"))
+    if not found:
+        raise ValueError("the card has no tgtrust agent key (no tgtrust extension, no tgtrust.agent_key)")
+    keys = set()
+    for k in found:
+        if not isinstance(k, str) or len(k) != 64 or any(c not in "0123456789abcdef" for c in k.lower()):
+            raise ValueError("the card's tgtrust agent key is not 64 hex characters")
+        keys.add(k.lower())
+    if len(keys) != 1:
+        raise ValueError("the card names two different tgtrust agent keys")
+    return keys.pop()
+
+
+def _key_from_card_arg(card: str) -> str:
+    where, is_url = card_source(card)
+    if is_url:
+        raw = card_fetch(where)
+    else:
+        with open(where, "rb") as fh:
+            raw = fh.read(CARD_MAX_BYTES + 1)
+        if len(raw) > CARD_MAX_BYTES:
+            raise ValueError(f"card is larger than {CARD_MAX_BYTES} bytes")
+    return agent_key_from_card(json.loads(raw))
+
 
 def _concordium_bind(args) -> int:
     from . import concordium
@@ -403,7 +481,17 @@ def _check(args, transport: Transport | None) -> int:
     """Exit codes: 0 verified or staked, 2 unknown or revoked, 1 error (bad input, issuer unreachable)."""
     from .badge import LEVEL_STAKED, LEVEL_VERIFIED, card_text
 
-    key = args.agent.strip().lower()
+    note = None
+    if args.card:
+        try:
+            key = _key_from_card_arg(args.card)
+        except (OSError, ValueError) as exc:
+            print(f"ERROR: card: {exc}")
+            return 1
+        note = (f"Card {args.card} names agent key {key}. A card is only a claim: to know its host holds this key, "
+                "have it sign a request (tgtrust.gate, docs/TRUST_GATE.md).")
+    else:
+        key = args.agent.strip().lower()
     if len(key) != 64 or any(c not in "0123456789abcdef" for c in key):
         print("ERROR: --agent must be a 64-character hex public key")
         return 1
@@ -430,9 +518,13 @@ def _check(args, transport: Transport | None) -> int:
     if args.json:
         if link is not None:
             badge = {**badge, "concordium": vars(link)}
+        if note:
+            badge = {**badge, "card_note": note}
         print(json.dumps(badge, indent=2, sort_keys=True))
     else:
         text = card_text(badge, latest)
+        if note:
+            text = note + "\n" + text
         if link is not None:
             from .concordium import link_lines
             text += "\n" + "\n".join(link_lines(link))
