@@ -20,10 +20,11 @@ checks expose the owner.
 | Piece | Where | State |
 | --- | --- | --- |
 | Concordium link: bind the agent's Ed25519 key to a Concordium account through CIS-8 (`tgtrust:v1`, `ed25519`, proof scheme `solana-ed25519`) | `tgtrust/concordium.py`, `python -m tgtrust.client concordium-bind`, docs/CONCORDIUM.md | canonical bytes match the registry's own tool on testnet and mainnet (`tests/golden/concordium`) |
+| Check another agent from its A2A card (`/.well-known/agent-card.json`) or ERC-8004 file | `python -m tgtrust.client check --card <host or file>` | tested; a card is treated as a claim, a signed request proves the key |
 | Check another agent with its Concordium binding and "Verified by Concordium" badge | `python -m tgtrust.client check --concordium testnet` | reads tested against the live testnet registry service |
 | ERC-8004 / A2A agent card with the Concordium badge and the tgtrust extension | `python -m tgtrust.erc8004 --concordium-badge …`, docs/ERC8004_EXPORT.md | tested with recorded registry replies |
 | Trust gate for paid agent APIs: signed requests, tiers by level, stake, disputes and Concordium badge; x402 v2 extension `tgtrust` | `tgtrust/gate.py`, docs/TRUST_GATE.md | tested |
-| Paid API example: refused, prepay with x402 `402`, credit by stake | `examples/paid_api.py` | runs offline with demo badges (PR #3) |
+| Paid API example: refused, prepay with x402 `402`, credit by stake | `examples/paid_api.py` | runs offline with demo badges |
 | MCP server for any MCP client (`tgtrust_check_agent`, `tgtrust_concordium_link`) | `python -m tgtrust.mcp_server` | tested, read-only |
 | OpenClaw / ClawHub skill | `skills/tgtrust/SKILL.md` | tested locally, not yet published |
 | Telegram-checked credential (RFC 9474 blind signature), stake contract on TON testnet, deals, disputes | README "How it works" | done; a real Telegram-signed string verified 2026-11-12 (docs/REAL_TELEGRAM_CHECK.md) |

@@ -22,7 +22,7 @@ A bot asks one question — `GET /v1/agents/{key}/badge` — and gets a level: `
 
 | Part | State |
 | --- | --- |
-| Telegram signature check, blind-signed credentials, issuer service | done; whole Python suite: 391 tests (a real Telegram-signed string verified on 2026-11-12, see `docs/REAL_TELEGRAM_CHECK.md`) |
+| Telegram signature check, blind-signed credentials, issuer service | done; whole Python suite: 398 tests (a real Telegram-signed string verified on 2026-11-12, see `docs/REAL_TELEGRAM_CHECK.md`) |
 | Agent registry (credential bound to the agent key) | done |
 | `StakeRegistry` contract (Tolk 1.5) | done, 23 sandbox tests; testnet `kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w` |
 | Trust badge, deals ledger, disputes with on-chain slash | done |
