@@ -18,11 +18,11 @@ tgtrust lets an agent prove three facts **without revealing who stands behind it
 A bot asks one question — `GET /v1/agents/{key}/badge` — and gets a level: `unknown`, `revoked`,
 `verified` (issuer credential, one Telegram account per issuer epoch), `staked` (credential and Gram at risk on TON testnet), plus the numbers behind it.
 
-## Status (2026-11-12)
+## Status (2026-11-13)
 
 | Part | State |
 | --- | --- |
-| Telegram signature check, blind-signed credentials, issuer service | done; whole Python suite: 361 tests (signatures checked with a stand-in key; see `docs/REAL_TELEGRAM_CHECK.md`) |
+| Telegram signature check, blind-signed credentials, issuer service | done; whole Python suite: 390 tests (a real Telegram-signed string verified on 2026-11-12, see `docs/REAL_TELEGRAM_CHECK.md`) |
 | Agent registry (credential bound to the agent key) | done |
 | `StakeRegistry` contract (Tolk 1.5) | done, 23 sandbox tests; testnet `kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w` |
 | Trust badge, deals ledger, disputes with on-chain slash | done |
@@ -32,6 +32,7 @@ A bot asks one question — `GET /v1/agents/{key}/badge` — and gets a level: `
 | Real init data signed by Telegram | checked 2026-11-12 with `python -m tgtrust.telegram_sig` on init data from a live Mini App: the real string verified with Telegram's production key; a wrong bot id and an altered user field were rejected (see docs/REAL_TELEGRAM_CHECK.md) |
 | Concordium Agent Registry link (`concordium-bind`, `check --concordium`, docs/CONCORDIUM.md): bind the agent key to an identified Concordium account through CIS-8 | done; byte format matches the registry, reads tested on live testnet; no key bound on testnet yet |
 | MCP server (`python -m tgtrust.mcp_server`, stdio): tools `tgtrust_check_agent` and `tgtrust_concordium_link` for any MCP client | done, tested; read-only |
+| Trust gate for paid agent APIs (`tgtrust.gate`, docs/TRUST_GATE.md): signed requests, price and credit by level, stake and Concordium badge, x402 v2 extension `tgtrust` (v1: `extra.tgtrust`) | done, tested; library only |
 | OpenClaw / ClawHub skill (`skills/tgtrust/SKILL.md`): any agent checks another agent with `python -m tgtrust.client check --agent <key>` | done, tested locally; not yet published on ClawHub |
 | Mainnet | not before an external audit |
 
