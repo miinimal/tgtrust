@@ -207,10 +207,13 @@ def test_x402_v2_extension_carries_info_and_schema():
     assert ext["tgtrust"]["info"] == gate.x402_extra(d, issuer_url="https://trust.example.org/v1")
     assert set(ext["tgtrust"]["schema"]["required"]) <= set(ext["tgtrust"]["info"])
     json.dumps(ext)
-    jsonschema = pytest.importorskip("jsonschema")  # optional: full schema check where installed
-    jsonschema.validate(ext["tgtrust"]["info"], ext["tgtrust"]["schema"])
-    anon = gate.x402_extension(_gate({}).decide("GET", "/", {}, b""))
-    jsonschema.validate(anon["tgtrust"]["info"], anon["tgtrust"]["schema"])
+    for info in (ext["tgtrust"]["info"], gate.x402_extension(_gate({}).decide("GET", "/", {}, b""))["tgtrust"]["info"]):
+        schema = gate.EXTENSION_SCHEMA
+        assert set(schema["required"]) <= set(info) and set(info) <= set(schema["properties"])
+        assert info["scheme"] == schema["properties"]["scheme"]["const"]
+        assert set(schema["properties"]["tier"]["required"]) == set(info["tier"])
+        assert info["tier"]["creditLimit"].isdigit()
+        assert info["agent"] is None or len(info["agent"]) == 64
 
 
 def test_nonce_cache_forgets_old_entries_and_stays_bounded():
