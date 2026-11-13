@@ -22,14 +22,17 @@ A bot asks one question — `GET /v1/agents/{key}/badge` — and gets a level: `
 
 | Part | State |
 | --- | --- |
-| Telegram signature check, blind-signed credentials, issuer service | done; whole Python suite: 230 tests (signatures checked with a stand-in key; see `docs/REAL_TELEGRAM_CHECK.md`) |
+| Telegram signature check, blind-signed credentials, issuer service | done; whole Python suite: 361 tests (signatures checked with a stand-in key; see `docs/REAL_TELEGRAM_CHECK.md`) |
 | Agent registry (credential bound to the agent key) | done |
 | `StakeRegistry` contract (Tolk 1.5) | done, 23 sandbox tests; testnet `kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w` |
 | Trust badge, deals ledger, disputes with on-chain slash | done |
 | ERC-8004 registration file export (`python -m tgtrust.erc8004`, see docs/ERC8004_EXPORT.md) | done, not yet registered on any EVM registry |
 | Agent SDK and two-agent example | done |
 | Holder Mini App at `/app/`: credential in the browser, no code needed (see docs/HOLDER_MINI_APP.md) | done; tested in Chromium with a stand-in Telegram key, not yet opened in a real Telegram client |
-| Real init data signed by Telegram (needs a live Mini App) | pending |
+| Real init data signed by Telegram | checked 2026-11-12 with `python -m tgtrust.telegram_sig` on init data from a live Mini App: the real string verified with Telegram's production key; a wrong bot id and an altered user field were rejected (see docs/REAL_TELEGRAM_CHECK.md) |
+| Concordium Agent Registry link (`concordium-bind`, `check --concordium`, docs/CONCORDIUM.md): bind the agent key to an identified Concordium account through CIS-8 | done; byte format matches the registry, reads tested on live testnet; no key bound on testnet yet |
+| MCP server (`python -m tgtrust.mcp_server`, stdio): tools `tgtrust_check_agent` and `tgtrust_concordium_link` for any MCP client | done, tested; read-only |
+| OpenClaw / ClawHub skill (`skills/tgtrust/SKILL.md`): any agent checks another agent with `python -m tgtrust.client check --agent <key>` | done, tested locally; not yet published on ClawHub |
 | Mainnet | not before an external audit |
 
 The code is a working reference implementation of the standard, not a finished product: the issuer is a

@@ -48,7 +48,7 @@ Latest deal note: demo record, local ledger [source: example capture file]
 Telegram check: issuer credential, one Telegram account per issuer epoch. Owner identity is not checked and not revealed. [source: badge endpoint]
 ```
 
-Proves: the card is built from the saved badge and ledger records of a demo agent, and every line names its source. Does not prove: that the agent is real. The records come from a local demo run (`examples/card/`) with a stand-in for Telegram's signing key, a local ledger, and no TON stake was read, so the stake line says `unknown`. The Telegram check only means one credential per Telegram account per issuer epoch; the owner's identity is neither checked nor revealed, and a real Telegram signature has not yet been tested.
+Proves: the card is built from the saved badge and ledger records of a demo agent, and every line names its source. Does not prove: that the agent is real. The records come from a local demo run (`examples/card/`) with a stand-in for Telegram's signing key, a local ledger, and no TON stake was read, so the stake line says `unknown`. The Telegram check only means one credential per Telegram account per issuer epoch; the owner's identity is neither checked nor revealed, and these demo records were not made with a real Telegram signature (the verifier itself was checked on real Telegram data on 2026-11-12, see docs/REAL_TELEGRAM_CHECK.md).
 
 ## 4. Export the ERC-8004 registration file
 

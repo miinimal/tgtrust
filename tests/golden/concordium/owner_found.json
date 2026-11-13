@@ -1,0 +1,13 @@
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+        "content": [
+            {
+                "type": "text",
+                "text": "{\n  \"network\": \"testnet\",\n  \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"external_key\": {\n    \"namespace\": \"eip155:1\",\n    \"key_type\": \"secp256k1-compressed\",\n    \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"\n  },\n  \"proof_scheme\": \"ethereum-personal-sign\",\n  \"metadata\": [],\n  \"status\": \"Active\",\n  \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"\n}"
+            }
+        ],
+        "isError": false
+    }
+}
