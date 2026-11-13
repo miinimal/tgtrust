@@ -255,3 +255,40 @@ def link_lines(link: ConcordiumLink) -> list[str]:
         why = f", {link.error[:80]}" if link.error else ""
         lines.append(f"Concordium badge: {link.badge}, {state} (status {link.status or 'unknown'}{why}) {src}")
     return lines
+
+
+# --- badge for the agent card ----------------------------------------------------------------------------
+
+BADGE_EXTENSION_URI = "https://docs.concordium.com/a2a-extensions/concordium-badge/v1"
+
+
+def verified_badge(agent_public_key_hex: str, token_address: str, reader: RegistryReader) -> dict:
+    """Read a Concordium badge from the chain and accept it only if it belongs to this tgtrust key.
+
+    Checks: the CIS-8004 agent is Active; its CIS-8 external reference is exactly this key (namespace tgtrust:v1,
+    ed25519); the key's CIS-8 binding is Active and owned by the same account as the agent. Returns the registry's
+    extension object and ERC-8004 ``registrations`` entry, plus what was read. Raises ConcordiumError otherwise.
+    The card-hash check is not done here: the card is the file being produced, hosted later."""
+    key = agent_public_key_hex.lower()
+    got = reader._tool("get_badge_json", {"token_address": token_address})
+    if not isinstance(got, dict) or "extension" not in got or "registrations_entry" not in got:
+        raise ConcordiumError("badge not found in the registry")
+    if got.get("status") != "Active":
+        raise ConcordiumError(f"badge status is {got.get('status')}, not Active")
+    ext = got["extension"]
+    if ext.get("uri") != BADGE_EXTENSION_URI:
+        raise ConcordiumError("unexpected badge extension URI")
+    ref = (ext.get("params") or {}).get("externalReference") or {}
+    if (ref.get("kind"), ref.get("namespace"), ref.get("keyType"), str(ref.get("publicKey", "")).lower()) != (
+            "Cis8", NAMESPACE, KEY_TYPE, key):
+        raise ConcordiumError("the badge's external reference is not this tgtrust key")
+    bound = reader.owner_of_key(key)
+    if bound is None or bound[1] != "Active":
+        raise ConcordiumError("this key has no active CIS-8 binding")
+    if bound[0] != got.get("owner_account"):
+        raise ConcordiumError("badge owner is a different account than the key binding")
+    entry = got["registrations_entry"]
+    if not isinstance(entry.get("agentId"), int) or not str(entry.get("agentRegistry", "")).startswith("ccd:"):
+        raise ConcordiumError("unexpected registrations entry")
+    return {"extension": ext, "registrations_entry": entry, "network": reader.network,
+            "token_address": token_address, "owner_account": got["owner_account"]}

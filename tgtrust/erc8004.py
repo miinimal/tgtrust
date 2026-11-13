@@ -140,8 +140,11 @@ def _stake_view(stake: dict | None) -> dict | None:
     }
 
 
+TGTRUST_EXTENSION_URI = "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1"
+
+
 def registration_file(badge: dict, profile: Profile, evm: list[EvmRegistration] | None = None, *,
-                      badge_url: str | None = None) -> dict:
+                      badge_url: str | None = None, concordium: dict | None = None) -> dict:
     """ERC-8004 registration file for one tgtrust agent. Raises ExportError on unusable input."""
     _check_badge(badge)
     revoked = badge["level"] == LEVEL_REVOKED
@@ -157,7 +160,18 @@ def registration_file(badge: dict, profile: Profile, evm: list[EvmRegistration] 
     if len(keys) != len(set(keys)):
         raise ExportError("duplicate_evm_registration", "the same registry and agent id appear twice")
     registrations: list[dict] = []  # stays empty until a real chain read (ownerOf / tokenURI) exists
-    return {
+    extra: dict = {}
+    if concordium is not None:
+        # read from the Concordium chain by concordium.verified_badge: a real read, so it may be listed
+        registrations.append(dict(concordium["registrations_entry"]))
+        extra["capabilities"] = {"extensions": [
+            concordium["extension"],
+            {"uri": TGTRUST_EXTENSION_URI, "required": False,
+             "description": "tgtrust: one Telegram account per issuer epoch, TON stake, co-signed deals and disputes",
+             "params": {"agentKey": badge["agent"], "level": badge["level"],
+                        **({"badgeUrl": badge_url} if badge_url else {})}},
+        ]}
+    return {**extra,
         "type": REGISTRATION_TYPE,
         "name": profile.name,
         "description": profile.description,
@@ -205,12 +219,17 @@ def _load(path: str) -> object:
         raise ExportError("invalid_json", f"{path}: {exc}") from exc
 
 
+concordium_fetch = None  # tests replace this with a recorded-reply fetcher
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Export a tgtrust badge as an ERC-8004 registration file")
     ap.add_argument("--badge", required=True, help="badge JSON from GET /v1/agents/{key}/badge")
     ap.add_argument("--profile", required=True, help="operator profile JSON: name, description, image, services")
     ap.add_argument("--evm", help="optional JSON list of EVM registrations with txHash evidence")
     ap.add_argument("--badge-url", help="public URL of the badge endpoint, added as a service")
+    ap.add_argument("--concordium-badge", help="Concordium badge (CIS-8004 token address) bound to this agent key")
+    ap.add_argument("--concordium-network", choices=["testnet", "mainnet"], default="testnet")
     ap.add_argument("-o", "--output", help="write here instead of stdout")
     args = ap.parse_args(argv)
     try:
@@ -220,7 +239,15 @@ def main(argv: list[str] | None = None) -> int:
         if not isinstance(evm_data, list):
             raise ExportError("invalid_evm_registration", "--evm must hold a JSON list")
         evm = [EvmRegistration.from_dict(e) for e in evm_data]
-        text = dumps(registration_file(badge, profile, evm, badge_url=args.badge_url))
+        concordium = None
+        if args.concordium_badge:
+            from . import concordium as ccd
+            try:
+                concordium = ccd.verified_badge(badge["agent"], args.concordium_badge,
+                                                ccd.RegistryReader(args.concordium_network, fetch=concordium_fetch))
+            except (ccd.ConcordiumError, OSError, ValueError) as exc:
+                raise ExportError("concordium_badge_rejected", str(exc)) from exc
+        text = dumps(registration_file(badge, profile, evm, badge_url=args.badge_url, concordium=concordium))
     except ExportError as exc:
         print(f"error {exc.code}: {exc}", file=sys.stderr)
         return 2

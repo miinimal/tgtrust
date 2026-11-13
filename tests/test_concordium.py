@@ -133,3 +133,55 @@ def test_tool_error_is_reported():
 def test_unknown_network_refused():
     with pytest.raises(ValueError):
         ccd.RegistryReader("devnet")
+
+
+class BadgeRegistry(FakeRegistry):
+    """Testnet agent 1166 as recorded, with its external reference set to `ref_key` under `namespace`."""
+
+    def __init__(self, ref_key: str, *, namespace: str = "tgtrust:v1", badge_status: str = "Active", **kw):
+        super().__init__(bound=True, **kw)
+        self.ref_key, self.namespace, self.badge_status = ref_key, namespace, badge_status
+
+    def __call__(self, method, url, body, headers):
+        if method == "POST" and json.loads(body)["params"]["name"] == "get_badge_json":
+            reply = golden("getbadge_1166")
+            inner = json.loads(reply["result"]["content"][0]["text"])
+            inner["status"] = self.badge_status
+            inner["extension"]["params"]["externalReference"].update(
+                namespace=self.namespace, keyType="ed25519", publicKey=self.ref_key)
+            reply["result"]["content"][0]["text"] = json.dumps(inner)
+            return 200, json.dumps(reply).encode()
+        return super().__call__(method, url, body, headers)
+
+
+def test_verified_badge_accepts_only_this_key():
+    reader = ccd.RegistryReader("testnet", fetch=BadgeRegistry(KEY))
+    got = ccd.verified_badge(KEY, "JyP9WZqZqhYXTLTYqJYcT", reader)
+    assert got["registrations_entry"] == {"agentId": 1166, "agentRegistry": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0"}
+    assert got["extension"]["uri"] == ccd.BADGE_EXTENSION_URI and got["owner_account"] == ACCOUNT
+    for fake, why in [(BadgeRegistry("cd" * 32), "not this tgtrust key"),
+                      (BadgeRegistry(KEY, namespace="eip155:1"), "not this tgtrust key"),
+                      (BadgeRegistry(KEY, badge_status="Revoked"), "not Active"),
+                      (BadgeRegistry(KEY, status="Revoked"), "no active CIS-8 binding")]:
+        with pytest.raises(ccd.ConcordiumError, match=why):
+            ccd.verified_badge(KEY, "JyP9WZqZqhYXTLTYqJYcT", ccd.RegistryReader("testnet", fetch=fake))
+
+
+def test_export_with_concordium_badge(monkeypatch, tmp_path, capsys):
+    from tgtrust import erc8004
+    examples = Path(__file__).parent.parent / "examples" / "erc8004"
+    badge = json.loads((examples / "badge-registered.json").read_text())
+    monkeypatch.setattr(erc8004, "concordium_fetch", BadgeRegistry(badge["agent"]))
+    args = ["--badge", str(examples / "badge-registered.json"), "--profile", str(examples / "profile.json"),
+            "--concordium-badge", "JyP9WZqZqhYXTLTYqJYcT"]
+    assert erc8004.main(args) == 0
+    card = json.loads(capsys.readouterr().out)
+    assert card["registrations"] == [{"agentId": 1166, "agentRegistry": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0"}]
+    uris = [e["uri"] for e in card["capabilities"]["extensions"]]
+    assert uris == [ccd.BADGE_EXTENSION_URI, erc8004.TGTRUST_EXTENSION_URI]
+    assert card["capabilities"]["extensions"][1]["params"]["agentKey"] == badge["agent"]
+    # a badge bound to another key is refused, and nothing is written
+    monkeypatch.setattr(erc8004, "concordium_fetch", BadgeRegistry("cd" * 32))
+    assert erc8004.main(args) == 2
+    captured = capsys.readouterr()
+    assert captured.out == "" and "concordium_badge_rejected" in captured.err
