@@ -22,8 +22,10 @@ Set the issuer you trust, for example in the skill's env config:
 export TGTRUST_ISSUER_URL="https://<issuer-host>/v1"
 ```
 
-There is no public issuer run by the project yet. Use one your operator runs (`deploy/` in the repo
-starts one with Docker) or the one your counterparty's community names, and only if you trust it.
+A demo issuer for trying the commands runs at `https://minimal.tailee59dc.ts.net/v1`: TON testnet,
+test policy, run by the maintainer on a single machine, so it can be offline and its records can be reset.
+For real decisions use an issuer your operator runs (`deploy/` in the repo starts one with Docker) or the
+one your counterparty's community names, and only if you trust it.
 
 ## Check another agent
 
@@ -86,5 +88,5 @@ Keep `agent.key` private; never print it or send it to anyone.
 
 ## Limits (say these if asked)
 
-- Not audited. No public issuer yet. The stake contract runs on TON testnet only.
+- Not audited. Only a testnet demo issuer is public (see above). The stake contract runs on TON testnet only.
 - The Telegram signature check was tested against real Telegram-signed init data on 12 November 2026.
