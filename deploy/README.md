@@ -49,7 +49,7 @@ cd ~/tgtrust && git pull && cd deploy && docker compose build && docker compose 
 
 - `curl https://trust.example.org/v1/issuer` — issuer key and policy.
 - `curl https://trust.example.org/v1/agents/738559c16db0b6b80b73de6094744bd9e802fb7df4657b3f41fdd3c7238228d8/badge`
-  — the testnet demo stake (0.5 GRAM) must show `stake.found: true`.
+  — the testnet demo stake (0.4 GRAM, read 2026-11-13) must show `stake.found: true`.
 - In Telegram: send `/badge 738559c16db0b6b80b73de6094744bd9e802fb7df4657b3f41fdd3c7238228d8` to the bot.
 
 ## Holder Mini App

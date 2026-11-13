@@ -69,5 +69,6 @@ server and an OpenClaw skill so any agent can ask." Screen: docs/SUBMISSION.md.
 ## Before recording
 
 - [ ] A tgtrust key bound on Concordium testnet from the owner's account, and its CIS-8004 agent with the badge.
-- [ ] A public issuer URL for the `check` step (until then, record that step against a local issuer).
+- [x] A public issuer URL for the `check` step: `https://minimal.tailee59dc.ts.net/v1` (testnet demo issuer;
+  `check` against the demo agent returned the card with 0.4 GRAM stake on 2026-11-13).
 - [ ] Terminal font large, window 1280×720 or larger.
