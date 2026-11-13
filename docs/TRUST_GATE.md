@@ -77,6 +77,12 @@ Where it goes depends on the x402 version (x402 specification v2 read 2026-11-13
 | v2 (`x402Version: 2`, `PAYMENT-REQUIRED` header) | top-level `extensions.tgtrust` as `{"info": <object>, "schema": <JSON Schema>}`; v2 keeps `accepts[].extra` for scheme-specific keys | `x402_extension(decision, issuer_url=...)` |
 | v1 | `extra.tgtrust` in each `PaymentRequirements` entry | `x402_extra(decision, issuer_url=...)` |
 
+## Example
+
+`python examples/paid_api.py` runs a priced endpoint in-process with demo badges: an anonymous caller is
+refused, a verified agent gets `402` with the x402 v2 `PAYMENT-REQUIRED` header and `extensions.tgtrust`, a
+staked agent gets ten answers on credit and then `402` at its limit. It takes no payment itself.
+
 ## Limits
 
 - A tier is only as strong as its issuer. The Telegram check means one Telegram account per issuer epoch, not a
