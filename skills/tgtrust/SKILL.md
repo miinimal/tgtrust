@@ -44,6 +44,18 @@ Add `--json` to get the raw badge instead. Add `--concordium mainnet` (or `testn
 Concordium's Agent Registry: whether this key is bound to a Concordium account, which is opened only with an
 identity from an identity provider (the person is not disclosed), and whether its badge is valid.
 
+## As an MCP server
+
+If your runtime speaks MCP, add a stdio server instead of running commands:
+
+```json
+{"command": "python3", "args": ["-m", "tgtrust.mcp_server"], "env": {"TGTRUST_ISSUER_URL": "https://<issuer-host>/v1"}}
+```
+
+Tools: `tgtrust_check_agent` (`agent_key`, optional `concordium`: `testnet` or `mainnet`) and
+`tgtrust_concordium_link` (`agent_key`, `network`). Both are read-only. `verified: false` means do not treat the
+agent as verified.
+
 ## How to use the result
 
 - Exit `0` means one real Telegram account stands behind this key at this issuer. It does not mean
