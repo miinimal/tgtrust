@@ -58,7 +58,7 @@ The page needs nothing beyond the service: `uvicorn --factory tgtrust.service:cr
 - `tests/test_webapp_flow.py` runs the page's flow code against a live HTTP service: both ways, a lost answer
   recovered by asking again, a second credential refused, every error code, file serving.
 - `tests/test_webapp_page.py` drives the real page in Chromium: both ways end to end, the lost-answer recovery
-  after reopening, the copy button, Russian and English, light and dark, widths from 320 px, no request to any
+  after reopening, the copy button, English for every user language, light and dark, widths from 320 px, no request to any
   other origin, no console error.
 - `tests/test_issuer.py` covers the retry rule in the issuer, including a restart and a concurrent race.
 - `tests/test_client_cli.py` covers the agent-side commands and the two file formats.

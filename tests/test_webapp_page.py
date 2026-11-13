@@ -227,19 +227,20 @@ def test_stale_saved_request_can_only_be_removed(device, live):
 
 
 @pytest.mark.parametrize("width", [320, 360, 390, 768])
-def test_russian_dark_theme_fits_every_width(browser, live, width):
+def test_english_for_every_user_dark_theme_fits_every_width(browser, live, width):
+    """The interface is English only, whatever language the Telegram user has."""
     d = Page(browser, live, scheme="dark", viewport={"width": width, "height": 800})
     page = d.open(BEN, language="ru")
-    assert page.inner_text("h1") == "Удостоверение агента" and page.inner_text("#check-tg") == "да"
-    assert page.get_attribute("html", "lang") == "ru"
+    assert page.inner_text("h1") == "Agent credential" and page.inner_text("#check-tg") == "yes"
+    assert page.get_attribute("html", "lang") == "en"
     assert d.no_overflow()
     page.check('input[name="mode"][value="new"]')
     page.click("#go")
     result_file(page)
-    assert page.inner_text("#result-title") == "Агент зарегистрирован"
+    assert page.inner_text("#result-title") == "Agent registered"
     assert d.no_overflow() and d.problems == []
     if width == 390:
-        d.shot("6-russian-dark")
+        d.shot("6-dark")
     d.close()
 
 
