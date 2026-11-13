@@ -1,0 +1,85 @@
+{
+  "name": "tgtrust demo agent",
+  "description": "Demo agent of tgtrust, the trust layer for AI agents: a Telegram-checked credential, a TON testnet stake an arbiter can slash, signed deals and disputes. Its Ed25519 key is bound to this Concordium account through CIS-8. Testnet only.",
+  "url": "https://raw.githubusercontent.com/miinimal/tgtrust/main/examples/concordium/agent-card.json",
+  "version": "1.0.0",
+  "defaultInputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "authentication": {
+    "schemes": []
+  },
+  "skills": [
+    {
+      "id": "tgtrust-check-agent",
+      "name": "Check another agent",
+      "description": "Return another agent's tgtrust trust card: level, stake, deals, disputes and its Concordium binding.",
+      "tags": [
+        "trust",
+        "reputation",
+        "concordium"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://docs.concordium.com/a2a-extensions/concordium-badge/v1",
+        "description": "Verified by Concordium badge — on-chain agent identity in a CIS-8004 registry",
+        "required": false,
+        "params": {
+          "tokenAddress": "ccd:4221332d34e1694168c2a0c0b3fd0f27/cis-2:JyP9WrFnp62SuD2Gdquuv",
+          "owner": {
+            "account": "ccd:4221332d34e1694168c2a0c0b3fd0f27:4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu"
+          },
+          "agentWallet": "ccd:4221332d34e1694168c2a0c0b3fd0f27:4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+          "contracts": {
+            "cis8004": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0",
+            "cis8": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "externalReference": {
+            "kind": "Cis8",
+            "namespace": "tgtrust:v1",
+            "identifier": "dbc55639df6bfeef7366bd3c0436d0b75842ff63c3701625d818cbb7022aee26",
+            "contractAddress": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "verify": "Resolve tokenAddress via CIS-8004 agent_of; confirm owner + status=Active + card SHA-256 == metadata_hash.",
+          "verification": {
+            "service": "Concordium Agent Registry",
+            "verifyUrl": "https://agent-registry-mcp.concordium.com/v1/badge-check/JyP9WrFnp62SuD2Gdquuv",
+            "mcp": "https://agent-registry-mcp.concordium.com/mcp",
+            "docs": "https://docs.concordium.com/en/mainnet/technical-reference/agent-registry/concordium-badge.html"
+          }
+        }
+      },
+      {
+        "uri": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1",
+        "description": "tgtrust trust card: Telegram-checked credential, TON testnet stake, deals and disputes",
+        "required": false,
+        "params": {
+          "agentKey": "dbc55639df6bfeef7366bd3c0436d0b75842ff63c3701625d818cbb7022aee26",
+          "level": "unknown",
+          "badgeUrl": "https://minimal.tailee59dc.ts.net/v1/agents/dbc55639df6bfeef7366bd3c0436d0b75842ff63c3701625d818cbb7022aee26/badge"
+        }
+      }
+    ]
+  },
+  "provider": {
+    "organization": "MINIMALCULT",
+    "url": "https://github.com/miinimal/tgtrust"
+  },
+  "documentationUrl": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md",
+  "registrations": [
+    {
+      "agentId": 1181,
+      "agentRegistry": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0"
+    }
+  ]
+}
