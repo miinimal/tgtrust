@@ -91,3 +91,5 @@ URI `https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extens
 - Card export with a verified badge: tested with recorded registry replies.
 - A tgtrust key is bound on testnet and its CIS-8004 agent is registered (token id 1181, badge
   `JyP9WrFnp62SuD2Gdquuv`), 2026-11-13: examples/concordium/README.md has the transactions and the card.
+- The same key is bound on **mainnet** to the owner's identity-verified account and registered as CIS-8004 agent
+  5136 (badge `Mf22ooPJoTuWLJPahtmvD`), 2026-11-13; `check --concordium mainnet` reads it.
