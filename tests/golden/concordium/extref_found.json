@@ -1,0 +1,13 @@
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+        "content": [
+            {
+                "type": "text",
+                "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}"
+            }
+        ],
+        "isError": false
+    }
+}

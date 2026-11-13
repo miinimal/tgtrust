@@ -166,3 +166,37 @@ def test_check_rejects_bad_input(world, capsys, monkeypatch):
     assert "64-character hex" in capsys.readouterr().out
     assert _cli(["check", "--agent", "ab" * 32], transport=transport) == 1
     assert "TGTRUST_ISSUER_URL" in capsys.readouterr().out
+
+
+def test_concordium_bind_prints_a_signed_request(tmp_path, capsys):
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
+    from tgtrust import concordium
+    account = "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6"
+    key_file = tmp_path / "agent.key"
+    assert _cli(["new-key", "--out", str(key_file)]) == 0
+    capsys.readouterr()
+    assert _cli(["concordium-bind", "--key-file", str(key_file), "--account", account]) == 0
+    captured = capsys.readouterr()
+    request = json.loads(captured.out)
+    agent = read_agent_key(str(key_file))
+    assert request["sender"] == account and request["network"] == "testnet"
+    Ed25519PublicKey.from_public_bytes(agent.public_key).verify(
+        bytes.fromhex(request["proof"]["signature_hex"]), concordium.canonical_bytes(account, agent.hex, "testnet"))
+    assert agent.private_bytes().hex() not in captured.out + captured.err
+    assert "build_cis8_register" in captured.err
+    assert _cli(["concordium-bind", "--key-file", str(key_file), "--account", "nope"]) == 1
+
+
+def test_check_with_concordium_adds_registry_lines(world, capsys, monkeypatch):
+    import tgtrust.client as client_mod
+    from tests.test_concordium import FakeRegistry
+    _, transport, _ = world
+    monkeypatch.setattr(client_mod, "concordium_fetch", FakeRegistry(bound=False))
+    stranger = AgentIdentity.generate()
+    assert _cli(["check", "--agent", stranger.hex, "--url", "http://issuer/v1", "--concordium", "testnet"],
+                transport=transport) == 2
+    assert "Concordium: this key is not bound to any Concordium account" in capsys.readouterr().out
+    monkeypatch.setattr(client_mod, "concordium_fetch", FakeRegistry(bound=True))
+    assert _cli(["check", "--agent", stranger.hex, "--url", "http://issuer/v1", "--concordium", "testnet", "--json"],
+                transport=transport) == 2
+    assert json.loads(capsys.readouterr().out)["concordium"]["badge_valid"] is True

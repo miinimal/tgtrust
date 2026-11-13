@@ -40,7 +40,9 @@ Exit code:
 - `1`: error (bad key, no issuer URL, issuer unreachable). You learned nothing; do not treat it as verified.
 
 The output is a short card. Every line names its source (badge endpoint, ledger, TON stake read).
-Add `--json` to get the raw badge instead.
+Add `--json` to get the raw badge instead. Add `--concordium mainnet` (or `testnet`) to also read
+Concordium's Agent Registry: whether this key is bound to a Concordium account, which is opened only with an
+identity from an identity provider (the person is not disclosed), and whether its badge is valid.
 
 ## How to use the result
 

@@ -22,6 +22,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
@@ -344,10 +345,19 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
     check.add_argument("--url", default=os.environ.get("TGTRUST_ISSUER_URL"),
                        help="issuer API base, e.g. https://issuer.example/v1 (default: $TGTRUST_ISSUER_URL)")
     check.add_argument("--json", action="store_true", help="print the raw badge JSON instead of the card")
+    check.add_argument("--concordium", choices=["testnet", "mainnet"],
+                       help="also read the Concordium Agent Registry: is this key bound to an identified account?")
+    bind = sub.add_parser("concordium-bind", allow_abbrev=False,
+                          help="sign a CIS-8 binding of this agent key to your Concordium account (nothing is sent)")
+    bind.add_argument("--key-file", required=True, help="agent key file made by new-key")
+    bind.add_argument("--account", required=True, help="your Concordium account address")
+    bind.add_argument("--network", choices=["testnet", "mainnet"], default="testnet")
     args = parser.parse_args(argv)
 
     if args.command == "check":
         return _check(args, transport)
+    if args.command == "concordium-bind":
+        return _concordium_bind(args)
 
     try:
         if args.command == "new-key":
@@ -367,6 +377,25 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
         print(f"ERROR: {exc}")
         return 1
     print(f"Registered: agent {badge['agent']}, issuer key {badge['issuer_key_id']}")
+    return 0
+
+
+concordium_fetch = None  # tests replace this with a recorded-reply fetcher
+
+
+def _concordium_bind(args) -> int:
+    from . import concordium
+
+    try:
+        agent = read_agent_key(args.key_file)
+        request = concordium.binding_request(agent, args.account, args.network)
+    except (OSError, ValueError) as exc:
+        print(f"ERROR: {exc}")
+        return 1
+    print(json.dumps(request, indent=2))
+    print(f"Next: pass this to the Concordium Agent Registry tool build_cis8_register ({concordium.MCP_URL}), "
+          f"then sign and submit the returned transaction from account {args.account} in your Concordium wallet. "
+          "The signature only proves the agent key agrees to the binding; it moves no funds.", file=sys.stderr)
     return 0
 
 
@@ -394,7 +423,20 @@ def _check(args, transport: Transport | None) -> int:
     except (OSError, ValueError, KeyError) as exc:
         print(f"ERROR: {exc}")
         return 1
-    print(json.dumps(badge, indent=2, sort_keys=True) if args.json else card_text(badge, latest))
+    link = None
+    if args.concordium:
+        from . import concordium
+        link = concordium.read_link(key, concordium.RegistryReader(args.concordium, fetch=concordium_fetch))
+    if args.json:
+        if link is not None:
+            badge = {**badge, "concordium": vars(link)}
+        print(json.dumps(badge, indent=2, sort_keys=True))
+    else:
+        text = card_text(badge, latest)
+        if link is not None:
+            from .concordium import link_lines
+            text += "\n" + "\n".join(link_lines(link))
+        print(text)
     return 0 if badge.get("level") in (LEVEL_VERIFIED, LEVEL_STAKED) else 2
 
 

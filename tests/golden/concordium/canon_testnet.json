@@ -1,0 +1,13 @@
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+        "content": [
+            {
+                "type": "text",
+                "text": "{\n  \"network\": \"testnet\",\n  \"byte_length\": 191,\n  \"bytes_hex\": \"4349532d382f76312f63616e6f6e6963616c94c7938c98198f4ec7f4f7392f6040bf2f6de16908a1bd086316f4551eb94cbb013200000000000000000000000000004221332d34e1694168c2a0c0b3fd0f273809612cb13d000d5c2e00e85f50f7960a000000746774727573743a76310a000000746774727573743a7631070000006564323535313920000000abababababababababababababababababababababababababababababababab0e000000736f6c616e612d65643235353139\",\n  \"contract_address\": {\n    \"index\": 12801,\n    \"subindex\": 0\n  },\n  \"genesis_hash\": \"4221332d34e1694168c2a0c0b3fd0f273809612cb13d000d5c2e00e85f50f796\",\n  \"prefix_utf8\": \"CIS-8/v1/canonical\",\n  \"next_step\": \"Wrap these bytes per your proof scheme, sign with the external private key, then pass the signature_hex to build_cis8_register.\"\n}"
+            }
+        ],
+        "isError": false
+    }
+}

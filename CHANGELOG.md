@@ -3,6 +3,7 @@
 ## Unreleased
 
 - `python -m tgtrust.client check --agent <key>`: prints another agent's trust card; exit 0 only for `verified` or `staked`. Issuer from `--url` or `TGTRUST_ISSUER_URL`.
+- Concordium Agent Registry link: `concordium-bind` signs a CIS-8 binding of the agent key to a Concordium account; `check --concordium` reads the binding and the badge (docs/CONCORDIUM.md).
 - OpenClaw / ClawHub skill in `skills/tgtrust/SKILL.md`.
 - Real Telegram-signed init data checked on 2026-11-12 (docs/REAL_TELEGRAM_CHECK.md).
 - Badge bot survives dropped connections and messages it cannot answer; the bot token is never written to stderr.
