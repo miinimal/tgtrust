@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tgtrust"
-version = "0.1.0"
+version = "0.2.0"
 description = "Anonymous, accountable AI agents for Telegram on TON"
 readme = "README.md"
 license = { text = "MIT" }
