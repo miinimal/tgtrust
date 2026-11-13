@@ -141,3 +141,28 @@ def test_inconsistent_agent_file(tmp_path):
     path.write_text(json.dumps({"format": "tgtrust-credential/v1"}))
     with pytest.raises(ValueError):
         AgentIdentity.from_agent_file(str(path))
+
+
+def test_check_prints_card_and_gates_on_level(world, tmp_path, capsys, monkeypatch):
+    client, transport, telegram = world
+    stranger = AgentIdentity.generate()
+    assert _cli(["check", "--agent", stranger.hex, "--url", "http://issuer/v1"], transport=transport) == 2
+    assert "not registered" in capsys.readouterr().out
+
+    agent = AgentIdentity.generate()
+    monkeypatch.setenv("TGTRUST_ISSUER_URL", "http://issuer/v1")
+    client.register(agent, *client.obtain_credential(agent, telegram.init_data({"id": 4242}, auth_date=int(time.time()))))
+    assert _cli(["check", "--agent", agent.hex.upper()], transport=transport) == 0
+    out = capsys.readouterr().out
+    assert out.startswith(f"AGENT CARD {agent.hex[:8]}") and "Badge level: verified" in out
+    assert _cli(["check", "--agent", agent.hex, "--json"], transport=transport) == 0
+    assert json.loads(capsys.readouterr().out)["level"] == "verified"
+
+
+def test_check_rejects_bad_input(world, capsys, monkeypatch):
+    _, transport, _ = world
+    monkeypatch.delenv("TGTRUST_ISSUER_URL", raising=False)
+    assert _cli(["check", "--agent", "zz", "--url", "http://issuer/v1"], transport=transport) == 1
+    assert "64-character hex" in capsys.readouterr().out
+    assert _cli(["check", "--agent", "ab" * 32], transport=transport) == 1
+    assert "TGTRUST_ISSUER_URL" in capsys.readouterr().out

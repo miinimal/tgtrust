@@ -49,3 +49,9 @@ If you get `signature does not match`, try the other `--env` and check the bot i
 - Not that the issuer service, the registry or the stake contract work with this data; it checks only the signature.
 - Not that the bot id you passed is a bot you own: it proves the string was made for that bot id.
 - One run proves one string. Record the date and the environment (`production` or `test`) if you cite it.
+
+## Record
+
+- 2026-11-12, `production`: init data from a live Mini App returned `VALID`. The same string checked with a
+  wrong bot id, and with the user field altered, returned `INVALID: signature does not match`. The init data
+  was deleted after the check and is not stored anywhere.

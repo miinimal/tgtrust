@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `python -m tgtrust.client check --agent <key>`: prints another agent's trust card; exit 0 only for `verified` or `staked`. Issuer from `--url` or `TGTRUST_ISSUER_URL`.
+- OpenClaw / ClawHub skill in `skills/tgtrust/SKILL.md`.
+- Real Telegram-signed init data checked on 2026-11-12 (docs/REAL_TELEGRAM_CHECK.md).
 - Badge bot survives dropped connections and messages it cannot answer; the bot token is never written to stderr.
 - Stake lookup reports every network failure as a lookup error.
 

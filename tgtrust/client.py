@@ -338,7 +338,16 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
     register.add_argument("--credential", required=True, help="credential.json or agent.json from the Mini App")
     register.add_argument("--key-file", help="agent key file made by new-key (not needed with agent.json)")
     register.add_argument("--url", help="issuer API base, if different from the one in the file")
+    check = sub.add_parser("check", allow_abbrev=False,
+                           help="print the trust card of another agent; exit 0 only if it is verified or staked")
+    check.add_argument("--agent", required=True, help="the other agent's public key, 64 hex characters")
+    check.add_argument("--url", default=os.environ.get("TGTRUST_ISSUER_URL"),
+                       help="issuer API base, e.g. https://issuer.example/v1 (default: $TGTRUST_ISSUER_URL)")
+    check.add_argument("--json", action="store_true", help="print the raw badge JSON instead of the card")
     args = parser.parse_args(argv)
+
+    if args.command == "check":
+        return _check(args, transport)
 
     try:
         if args.command == "new-key":
@@ -359,6 +368,34 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
         return 1
     print(f"Registered: agent {badge['agent']}, issuer key {badge['issuer_key_id']}")
     return 0
+
+
+def _check(args, transport: Transport | None) -> int:
+    """Exit codes: 0 verified or staked, 2 unknown or revoked, 1 error (bad input, issuer unreachable)."""
+    from .badge import LEVEL_STAKED, LEVEL_VERIFIED, card_text
+
+    key = args.agent.strip().lower()
+    if len(key) != 64 or any(c not in "0123456789abcdef" for c in key):
+        print("ERROR: --agent must be a 64-character hex public key")
+        return 1
+    if not args.url:
+        print("ERROR: no issuer URL; pass --url or set TGTRUST_ISSUER_URL")
+        return 1
+    client = TgTrustClient(args.url, transport=transport)
+    try:
+        badge = client.badge(key)
+        latest = None
+        if ((badge.get("history") or {}).get("deals") or {}).get("count"):
+            items = client.deals(key, limit=1).get("deals") or []
+            latest = items[0] if items else None
+    except TgTrustError as exc:
+        print(f"ERROR: the issuer answered {exc.status} {exc.code}")
+        return 1
+    except (OSError, ValueError, KeyError) as exc:
+        print(f"ERROR: {exc}")
+        return 1
+    print(json.dumps(badge, indent=2, sort_keys=True) if args.json else card_text(badge, latest))
+    return 0 if badge.get("level") in (LEVEL_VERIFIED, LEVEL_STAKED) else 2
 
 
 if __name__ == "__main__":
