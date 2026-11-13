@@ -72,4 +72,5 @@ server and an OpenClaw skill so any agent can ask." Screen: docs/SUBMISSION.md.
   (agent `dbc55639…ee26`, token id 1181, examples/concordium/README.md).
 - [x] A public issuer URL for the `check` step: `https://minimal.tailee59dc.ts.net/v1` (testnet demo issuer;
   `check` against the demo agent returned the card with 0.4 GRAM stake on 2026-11-13).
-- [ ] Terminal font large, window 1280×720 or larger.
+- [x] Rendered at 1920×1080 from captured command outputs, captions instead of voice (part 3 uses
+  `--concordium mainnet` on the Telegram-verified demo agent).
