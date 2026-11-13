@@ -76,7 +76,11 @@ Then docs/VERIFY_IN_60_SECONDS.md and docs/CONCORDIUM.md.
 - [x] The same key bound on Concordium mainnet to an identity-verified account, agent 5136 with a valid badge
   (examples/concordium/README.md).
 - [x] Public issuer URL in the skill and in this file: demo issuer `https://minimal.tailee59dc.ts.net/v1`
-  (testnet, test policy, single machine, may be offline). Mini App credential issuance still needs the bot
-  id set on that issuer.
-- [ ] Demo video.
-- [ ] Check the Encode rules on AI tool disclosure and fill the submission form.
+  (testnet, test policy, single machine, may be offline). Bot and Mini App: https://t.me/tgtrust_agents_bot
+  (`/card <key>`, "Get credential").
+- [x] The Concordium-bound demo agent `dbc55639…ee26` holds a Telegram credential: `check --concordium mainnet`
+  shows level `verified`, the CIS-8 binding and a valid badge, and exits 0.
+- [x] Demo video recorded (62 s, real outputs; attached to the release when the entry is submitted).
+- [ ] Fill the submission form (the Encode page asks for a description, the repository, a video of up to
+  3 minutes, a CCDExplorer link and the path to production; no separate AI disclosure rule found on that page,
+  the description states AI tool use anyway).
