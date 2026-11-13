@@ -71,7 +71,8 @@ Then docs/VERIFY_IN_60_SECONDS.md and docs/CONCORDIUM.md.
 
 ## Still open before 2026-12-09
 
-- [ ] A tgtrust key bound on Concordium testnet (needs the owner's Concordium testnet account).
+- [x] A tgtrust key bound on Concordium testnet and its CIS-8004 agent registered (token id 1181,
+  examples/concordium/README.md).
 - [x] Public issuer URL in the skill and in this file: demo issuer `https://minimal.tailee59dc.ts.net/v1`
   (testnet, test policy, single machine, may be offline). Mini App credential issuance still needs the bot
   id set on that issuer.

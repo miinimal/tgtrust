@@ -89,4 +89,5 @@ URI `https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extens
 - Canonical bytes: match the registry on testnet and mainnet.
 - Reads (`owner_of_key`, `agent_by_external_reference`, badge check): work against the live testnet service.
 - Card export with a verified badge: tested with recorded registry replies.
-- A tgtrust key has not yet been bound on testnet: that needs the owner's Concordium testnet account.
+- A tgtrust key is bound on testnet and its CIS-8004 agent is registered (token id 1181, badge
+  `JyP9WrFnp62SuD2Gdquuv`), 2026-11-13: examples/concordium/README.md has the transactions and the card.
