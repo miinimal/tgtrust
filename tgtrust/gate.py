@@ -321,6 +321,41 @@ def x402_extra(decision: Decision, *, issuer_url: str | None = None) -> dict:
     }
 
 
+EXTENSION_KEY = "tgtrust"
+
+_TIER_SCHEMA = {
+    "type": "object",
+    "properties": {"name": {"type": "string"}, "allowed": {"type": "boolean"}, "prepay": {"type": "boolean"},
+                   "creditLimit": {"type": "string", "pattern": "^[0-9]+$"}},
+    "required": ["name", "allowed", "prepay", "creditLimit"],
+}
+
+EXTENSION_SCHEMA = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+        "extension": {"type": "string"},
+        "scheme": {"const": SCHEME},
+        "headers": {"type": "array", "items": {"type": "string"}},
+        "issuer": {"type": ["string", "null"]},
+        "agent": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "level": {"type": ["string", "null"]},
+        "tier": _TIER_SCHEMA,
+        "error": {"type": ["string", "null"]},
+    },
+    "required": ["extension", "scheme", "headers", "tier"],
+}
+
+
+def x402_extension(decision: Decision, *, issuer_url: str | None = None) -> dict:
+    """``{"tgtrust": {"info": ..., "schema": ...}}`` for the top-level ``extensions`` of an x402 v2 PaymentRequired.
+
+    x402 v2 (spec read 2026-11-13) keeps ``accepts[].extra`` for scheme-specific keys and carries protocol
+    extensions as ``extensions.<key> = {info, schema}``; use this for v2 and ``x402_extra`` for v1 replies.
+    """
+    return {EXTENSION_KEY: {"info": x402_extra(decision, issuer_url=issuer_url), "schema": EXTENSION_SCHEMA}}
+
+
 def gate_for_issuer(issuer_url: str, policy: Policy | None = None, **kwargs) -> TrustGate:
     """A gate that reads badges from a tgtrust issuer, e.g. ``https://trust.example.org/v1``."""
     from .client import TgTrustClient

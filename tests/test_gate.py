@@ -199,6 +199,20 @@ def test_x402_extra_describes_the_decision():
     json.dumps(extra)
 
 
+def test_x402_v2_extension_carries_info_and_schema():
+    a = AgentIdentity.generate()
+    d = _gate({a.hex: _badge(a.hex, "staked", stake=10**9)}).decide(*_signed(a))
+    ext = gate.x402_extension(d, issuer_url="https://trust.example.org/v1")
+    assert list(ext) == ["tgtrust"] and set(ext["tgtrust"]) == {"info", "schema"}
+    assert ext["tgtrust"]["info"] == gate.x402_extra(d, issuer_url="https://trust.example.org/v1")
+    assert set(ext["tgtrust"]["schema"]["required"]) <= set(ext["tgtrust"]["info"])
+    json.dumps(ext)
+    jsonschema = pytest.importorskip("jsonschema")  # optional: full schema check where installed
+    jsonschema.validate(ext["tgtrust"]["info"], ext["tgtrust"]["schema"])
+    anon = gate.x402_extension(_gate({}).decide("GET", "/", {}, b""))
+    jsonschema.validate(anon["tgtrust"]["info"], anon["tgtrust"]["schema"])
+
+
 def test_nonce_cache_forgets_old_entries_and_stays_bounded():
     c = gate.NonceCache(window_seconds=10, max_entries=3)
     assert c.use("a", "n1", 0) and not c.use("a", "n1", 5)

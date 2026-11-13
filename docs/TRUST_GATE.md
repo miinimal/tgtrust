@@ -36,7 +36,7 @@ captured request cannot be replayed.
 ## API
 
 ```python
-from tgtrust.gate import Policy, Tier, gate_for_issuer, x402_extra
+from tgtrust.gate import Policy, Tier, gate_for_issuer, x402_extension
 
 policy = Policy(
     anonymous=Tier("anonymous", allowed=False),
@@ -64,11 +64,18 @@ How a tier is chosen:
 
 ## x402 extra v1
 
-When the API answers `402 Payment Required` through x402, put `x402_extra(decision, issuer_url=...)` under
-`extra.tgtrust` in each `PaymentRequirements` entry. The object tells the caller which tier it got and which
-headers raise it. The gate does not change any other x402 field. Fields: `extension` (this section's URI),
-`scheme`, `headers`, `issuer`, `agent`, `level`, `tier` (`name`, `allowed`, `prepay`, `creditLimit` as a
-string), `error`.
+When the API answers `402 Payment Required` through x402, describe the caller's tier with the object from
+`x402_extra(decision, issuer_url=...)`. The object tells the caller which tier it got and which headers raise
+it. The gate does not change any other x402 field. Fields: `extension` (this section's URI), `scheme`, `headers`,
+`issuer`, `agent`, `level`, `tier` (`name`, `allowed`, `prepay`, `creditLimit` as a string), `error`.
+
+Where it goes depends on the x402 version (x402 specification v2 read 2026-11-13 at
+`github.com/coinbase/x402/blob/main/specs/x402-specification-v2.md`):
+
+| x402 | Place | Helper |
+| --- | --- | --- |
+| v2 (`x402Version: 2`, `PAYMENT-REQUIRED` header) | top-level `extensions.tgtrust` as `{"info": <object>, "schema": <JSON Schema>}`; v2 keeps `accepts[].extra` for scheme-specific keys | `x402_extension(decision, issuer_url=...)` |
+| v1 | `extra.tgtrust` in each `PaymentRequirements` entry | `x402_extra(decision, issuer_url=...)` |
 
 ## Limits
 
