@@ -52,6 +52,8 @@ def repo_copy(tmp_path_factory) -> Path:
     return dst
 
 
+@pytest.mark.skipif(shutil.which("bash") is None or os.name == "nt",
+                    reason="the walk-through is written for a POSIX shell")
 @pytest.mark.parametrize("script,expected", STEPS, ids=[s.splitlines()[1][:40] for s, _ in STEPS])
 def test_command_runs_and_output_matches(repo_copy, script, expected):
     env = dict(os.environ)

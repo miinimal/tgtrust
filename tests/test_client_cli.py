@@ -48,7 +48,8 @@ def test_new_key_then_register(world, tmp_path, capsys):
     out = capsys.readouterr().out
     agent = read_agent_key(str(key_file))
     assert f"Public key: {agent.hex}" in out and agent.private_bytes().hex() not in out
-    assert stat.S_IMODE(os.stat(key_file).st_mode) == 0o600
+    if os.name != "nt":  # Windows has no POSIX file modes
+        assert stat.S_IMODE(os.stat(key_file).st_mode) == 0o600
     assert _cli(["new-key", "--out", str(key_file)]) == 1  # never overwrites a key
     assert read_agent_key(str(key_file)).hex == agent.hex
 

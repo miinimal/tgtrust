@@ -341,6 +341,9 @@ def _read_issuer_key(setting: str, path: str):
     except IsADirectoryError:
         raise fail("is a directory") from None
     except OSError as exc:
+        # Windows reports a directory as PermissionError, not IsADirectoryError.
+        if os.path.isdir(path):
+            raise fail("is a directory") from None
         raise fail(f"cannot read file {type(exc).__name__}") from None
     if not data.strip():
         raise fail("file is empty")
