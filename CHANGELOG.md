@@ -1,8 +1,13 @@
 # Changelog
 
-## Unreleased
+## v0.2.0 — 2026-11-13
 
-- Trust gate for paid agent APIs (`tgtrust.gate`, docs/TRUST_GATE.md): agents sign requests with their key; the API gives prepay or credit by tgtrust level, stake, upheld disputes and the Concordium badge; `x402_extra` for x402 replies.
+Agent-to-agent trust you can use from a paid API, an MCP client or an agent card. Still a reference implementation on testnets; not audited.
+
+- Trust gate for paid agent APIs (`tgtrust.gate`, docs/TRUST_GATE.md): agents sign requests with their key; the API gives prepay or credit by tgtrust level, stake, upheld disputes and the Concordium badge; x402 v2 extension `tgtrust` (`x402_extension`, `{info, schema}`) and `extra.tgtrust` for v1 (`x402_extra`).
+- Paid API example (`examples/paid_api.py`): anonymous refused, verified prepays with an x402 v2 `402`, staked runs on credit up to its limit.
+- `check --card <file | https URL | https origin>`: checks an agent from its A2A card (`/.well-known/agent-card.json`) or ERC-8004 file; a card is treated as a claim.
+- docs/SUBMISSION.md and docs/DEMO.md for the Concordium Trusted Agents entry.
 - `python -m tgtrust.client check --agent <key>`: prints another agent's trust card; exit 0 only for `verified` or `staked`. Issuer from `--url` or `TGTRUST_ISSUER_URL`.
 - Concordium Agent Registry link: `concordium-bind` signs a CIS-8 binding of the agent key to a Concordium account; `check --concordium` reads the binding and the badge (docs/CONCORDIUM.md).
 - MCP server (stdio, read-only): `tgtrust_check_agent`, `tgtrust_concordium_link`.

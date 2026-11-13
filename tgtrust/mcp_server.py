@@ -23,7 +23,7 @@ from .badge import LEVEL_STAKED, LEVEL_VERIFIED, card_text
 from .client import TgTrustClient, TgTrustError, Transport
 
 PROTOCOL_VERSION = "2025-06-18"
-SERVER_INFO = {"name": "tgtrust", "version": "0.1.0"}
+SERVER_INFO = {"name": "tgtrust", "version": "0.2.0"}
 _KEY_SCHEMA = {"type": "string", "pattern": "^[0-9a-fA-F]{64}$",
                "description": "the other agent's tgtrust public key, 64 hex characters"}
 _NET_SCHEMA = {"type": "string", "enum": ["testnet", "mainnet"]}
