@@ -1,0 +1,14 @@
+{
+  "name": "tgtrust-concordium-x402",
+  "private": true,
+  "type": "module",
+  "description": "A tgtrust-priced paid call settled with x402 on Concordium testnet (sponsored transaction)",
+  "scripts": {
+    "pay": "node pay.mjs"
+  },
+  "dependencies": {
+    "@concordium/web-sdk": "12.0.2",
+    "@x402/concordium": "2.31.0",
+    "@x402/core": "2.31.0"
+  }
+}

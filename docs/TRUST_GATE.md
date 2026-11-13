@@ -86,6 +86,12 @@ a token on Base Sepolia and Gram, TON's native coin, on TON testnet (`network: "
 in nanogram), the native-coin form of the TVM scheme proposed in x402-foundation/x402#4263 (draft). It takes no
 payment itself.
 
+## Paying on Concordium
+
+`examples/concordium_x402/` settles a gate-priced call with x402 on Concordium testnet: the agent signs a sponsored
+CCD transfer, the facilitator pays the fee, verifies, submits and waits for finalization. A recorded run with its
+CCDExplorer link is in that folder's README.
+
 ## Limits
 
 - A tier is only as strong as its issuer. The Telegram check means one Telegram account per issuer epoch, not a
