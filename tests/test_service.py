@@ -138,7 +138,8 @@ def test_settings_require_secrets():
 def test_app_from_env_and_key_file(tmp_path, telegram):
     key_path = str(tmp_path / "issuer.pem")
     write_issuer_key(key_path, bits=2048)
-    assert oct(os.stat(key_path).st_mode & 0o777) == "0o600"
+    if os.name != "nt":  # Windows has no POSIX file modes
+        assert oct(os.stat(key_path).st_mode & 0o777) == "0o600"
     with pytest.raises(FileExistsError):
         write_issuer_key(key_path)
     settings = Settings.from_env({

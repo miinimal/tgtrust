@@ -18,7 +18,8 @@ def test_usage_without_path(capsys):
 def test_generates_key_file_and_env_lines(tmp_path, capsys):
     path = str(tmp_path / "issuer.pem")
     assert keys.main(["keys", path]) == 0
-    assert stat.S_IMODE(os.stat(path).st_mode) == 0o600
+    if os.name != "nt":  # Windows has no POSIX file modes
+        assert stat.S_IMODE(os.stat(path).st_mode) == 0o600
     with open(path, "rb") as fh:
         key = serialization.load_pem_private_key(fh.read(), password=None)
     assert isinstance(key, rsa.RSAPrivateKey)
