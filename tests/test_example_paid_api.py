@@ -26,6 +26,10 @@ def test_paid_api_demo_tiers_and_x402_v2_reply():
     assert set(pr) == {"x402Version", "error", "resource", "accepts", "extensions"}
     assert set(pr["accepts"][0]) == {"scheme", "network", "amount", "asset", "payTo", "maxTimeoutSeconds"}
     assert pr["accepts"][0]["network"] == "eip155:84532" and pr["accepts"][0]["amount"] == "100"
+    ton = pr["accepts"][1]
+    assert set(ton) == set(pr["accepts"][0])
+    assert ton["scheme"] == "exact" and ton["network"] == "tvm:-3" and ton["asset"] == "native"
+    assert ton["amount"] == "10000000" and ton["amount"].isdigit()
     info = pr["extensions"]["tgtrust"]["info"]
     assert info["tier"]["name"] == "verified" and info["tier"]["prepay"] is True
     assert set(pr["extensions"]["tgtrust"]) == {"info", "schema"}

@@ -8,10 +8,17 @@ One endpoint, ``POST /v1/answer``, priced at 100 units per call. The trust gate 
 - an agent with a credential but no stake must pay first (``402`` with x402 ``PAYMENT-REQUIRED``);
 - an agent with enough Gram at stake may run up to 1,000 units of credit and pay later.
 
+Every ``402`` offers two ways to pay, as two ``accepts`` entries of the x402 ``exact`` scheme:
+
+- a token on Base Sepolia (``eip155:84532``);
+- Gram, TON's native coin, on TON testnet (``tvm:-3``, ``asset: "native"``, amount in nanogram), the native-coin
+  form of the TVM ``exact`` scheme proposed in x402-foundation/x402#4263 (draft). The same agent key that the gate
+  checks can be the key of the TON wallet that pays, so trust and payment share one identity.
+
 Badges come from a dict in this process (demo data, no network). Against a real issuer use
 ``gate_for_issuer("https://<issuer>/v1", POLICY)`` instead. The example takes no payment itself: a real API hands
-the x402 ``PAYMENT-SIGNATURE`` header to its facilitator. ``X402_ASSET`` and ``X402_PAY_TO`` must be set to your own
-token contract and receiving address before anything real is paid.
+the x402 ``PAYMENT-SIGNATURE`` header to its facilitator. ``X402_ASSET``, ``X402_PAY_TO`` and ``X402_TON_PAY_TO``
+must be set to your own token contract and receiving addresses before anything real is paid.
 """
 
 from __future__ import annotations
@@ -36,6 +43,11 @@ NETWORK = "eip155:84532"  # Base Sepolia, CAIP-2 (x402 v2 spec, section 11.1)
 ASSET = os.environ.get("X402_ASSET", "<token contract on NETWORK>")
 PAY_TO = os.environ.get("X402_PAY_TO", "<your receiving address>")
 
+TON_NETWORK = "tvm:-3"  # TON testnet, CAIP-2 form used by the x402 TVM mechanism (mainnet: tvm:-239)
+TON_ASSET = "native"  # reserved asset id for the network's native coin (x402-foundation/x402#4263)
+PRICE_NANOGRAM = int(os.environ.get("X402_PRICE_NANOGRAM", "10000000"))  # 0.01 Gram per call, 9 decimals
+TON_PAY_TO = os.environ.get("X402_TON_PAY_TO", "<your TON testnet address>")
+
 POLICY = gate.Policy(
     anonymous=gate.Tier("anonymous", allowed=False),
     unknown=gate.Tier("unknown", prepay=True),
@@ -53,7 +65,9 @@ def payment_required(request: Request, decision: gate.Decision, error: str) -> d
         "error": error,
         "resource": {"url": str(request.url), "description": "One answer", "mimeType": "application/json"},
         "accepts": [{"scheme": "exact", "network": NETWORK, "amount": str(PRICE), "asset": ASSET,
-                     "payTo": PAY_TO, "maxTimeoutSeconds": 60}],
+                     "payTo": PAY_TO, "maxTimeoutSeconds": 60},
+                    {"scheme": "exact", "network": TON_NETWORK, "amount": str(PRICE_NANOGRAM), "asset": TON_ASSET,
+                     "payTo": TON_PAY_TO, "maxTimeoutSeconds": 60}],
         "extensions": gate.x402_extension(decision),
     }
 

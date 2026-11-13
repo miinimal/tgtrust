@@ -81,7 +81,10 @@ Where it goes depends on the x402 version (x402 specification v2 read 2026-11-13
 
 `python examples/paid_api.py` runs a priced endpoint in-process with demo badges: an anonymous caller is
 refused, a verified agent gets `402` with the x402 v2 `PAYMENT-REQUIRED` header and `extensions.tgtrust`, a
-staked agent gets ten answers on credit and then `402` at its limit. It takes no payment itself.
+staked agent gets ten answers on credit and then `402` at its limit. Each `402` offers two `exact` payment options:
+a token on Base Sepolia and Gram, TON's native coin, on TON testnet (`network: "tvm:-3"`, `asset: "native"`, amount
+in nanogram), the native-coin form of the TVM scheme proposed in x402-foundation/x402#4263 (draft). It takes no
+payment itself.
 
 ## Limits
 
