@@ -179,6 +179,11 @@ class Settings:
 
 import re  # noqa: E402  (kept next to the settings helpers below)
 
+# Read-only endpoints whose replies any web page may read (CORS). Everything else stays same-origin.
+PUBLIC_READ_PATH = re.compile(
+    r"/v1/(health|issuer|agents/[0-9A-Fa-f]{64}(/(badge|deals|disputes))?|disputes/[0-9]{1,20})"
+)
+
 from .stake import ENDPOINTS  # noqa: E402
 from .telegram_sig import TELEGRAM_PUBLIC_KEYS  # noqa: E402
 
@@ -470,7 +475,13 @@ def create_app(
                 client = request.headers["x-forwarded-for"].split(",")[-1].strip() or client
             if not limiter.allow(client):
                 return JSONResponse({"detail": {"code": "rate_limited"}}, status_code=429)
-        return await call_next(request)
+        response = await call_next(request)
+        if request.method in ("GET", "HEAD") and PUBLIC_READ_PATH.fullmatch(request.url.path):
+            # Public, read-only facts: any web page may read them (for example a verifier running in a browser on
+            # another site). No credentials are involved, so a wildcard origin gives nothing extra away. Writes and
+            # the holder page never get this header.
+            response.headers["Access-Control-Allow-Origin"] = "*"
+        return response
 
     @app.get("/v1/health")
     def health() -> dict:

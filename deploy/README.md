@@ -39,6 +39,11 @@ trust.example.org {
 }
 ```
 
+The service itself sends `Access-Control-Allow-Origin: *` on its public read-only GET replies (`/v1/health`,
+`/v1/issuer`, `/v1/agents/{key}` with `/badge`, `/deals`, `/disputes`, and `/v1/disputes/{id}`), so a verifier
+running in a browser on another site, such as Trust Desk, can read a badge. Writes and the holder page do not get
+it. Do not add CORS headers in the proxy.
+
 ## Update
 
 ```
