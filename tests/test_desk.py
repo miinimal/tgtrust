@@ -31,6 +31,24 @@ def test_network_build_is_current_and_valid():
     assert "WARNING" not in done.stdout.upper() and "warning" not in done.stderr.lower(), done.stdout
 
 
+def test_demo_network_build_is_current_and_valid():
+    done = _node("desk/tools/agentify/scripts/build_network.mjs", "demo-api/paid_api_desk.hocon",
+                 "--manifest", "demo-api/agent-manifest.json", "--runtime", "demo-api/runtime", "--check")
+    assert done.returncode == 0, done.stdout + done.stderr
+    assert "OK: these files are up to date" in done.stdout
+    assert "WARNING" not in done.stdout.upper(), done.stdout
+
+
+def test_demo_uses_the_same_runtime_and_verifier_bytes():
+    demo = ROOT / "demo-api"
+    for rel in sorted(p.relative_to(DESK / "runtime") for p in (DESK / "runtime").rglob("*") if p.is_file()):
+        assert (demo / "runtime" / rel).read_bytes() == (DESK / "runtime" / rel).read_bytes(), rel
+    assert {p.relative_to(demo / "runtime") for p in (demo / "runtime").rglob("*") if p.is_file()} == \
+        {p.relative_to(DESK / "runtime") for p in (DESK / "runtime").rglob("*") if p.is_file()}
+    assert (demo / "vendor" / "verifier.js").read_bytes() == (DESK / "verifier.js").read_bytes()
+    assert (demo / "vendor" / "lib" / "blindrsa.js").read_bytes() == (DESK / "lib" / "blindrsa.js").read_bytes()
+
+
 @pytest.mark.parametrize("name", sorted(p.name for p in (DESK / "tests").glob("*.test.mjs")))
 def test_desk_node_file(name: str):
     done = _node("--test", f"desk/tests/{name}")

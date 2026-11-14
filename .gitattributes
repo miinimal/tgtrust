@@ -2,3 +2,7 @@
 # cognizant-ai-labs/agentic-web; desk/tools/agentify/RUNTIME.sha256 checks them. Never convert line endings.
 desk/runtime/** -text
 desk/tools/agentify/** -text
+demo-api/runtime/** -text
+demo-api/vendor/** -text
+desk/verifier.js -text
+desk/lib/** -text

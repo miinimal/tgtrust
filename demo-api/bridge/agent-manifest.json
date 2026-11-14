@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "paid_api_desk"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}

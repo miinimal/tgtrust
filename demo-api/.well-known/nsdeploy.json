@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "paid_api_desk",
+      "front_man": "api_gatekeeper",
+      "aliases": [
+        "paid_api_desk",
+        "api_gatekeeper"
+      ],
+      "url": "paid_api_desk"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}
