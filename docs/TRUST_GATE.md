@@ -60,7 +60,7 @@ How a tier is chosen:
 | signature valid, but level `unknown` or `revoked`, the badge lookup failed, or more upheld disputes than allowed | `unknown` |
 | level `verified`, or `staked` with less than `min_stake_nanogram` or a withdrawing stake | `verified` |
 | level `staked` with enough active stake | `staked` |
-| as above, and the key's CIS-8 binding is Active and its Verified by Concordium badge is valid | `concordium_tier` |
+| level `verified` or `staked` with no more upheld disputes than allowed (staked or not), and the key's CIS-8 binding is Active and its Verified by Concordium badge is valid | `concordium_tier` |
 
 ## x402 extra v1
 

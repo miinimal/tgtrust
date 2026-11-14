@@ -70,9 +70,9 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 | Published form MUST preserve the data model and MUST NOT depend on local includes, env substitutions or publisher-only paths | `trust_desk.network.json` is produced by `build_network.mjs`; the test re-parses the HOCON and requires the same object, and fails on `include`, `${` or file paths | `desk/tests/network.test.mjs` "the published network is the HOCON source, fully resolved" | done |
 | 2.1 stable name, short description, front agent | manifest and network share the name `trust_desk`, front agent `trust_desk` | network test "manifest lists the network…" | done |
 | 2.1 unique agent names, function description, instructions, tools list | front agent `trust_desk` delegates to `evidence_checker` and `limit_advisor` | build `--check`; network test "at least two agents…" | done |
-| 2.1 JSON-Schema inputs; structured outputs SHOULD declare schemas | every agent `function` has a `request` parameter (done); the site actions `get_desk`, `check_agent`, `recommend_limit` declare input schemas and document their result shape (block 3) | network test; `desk/tests/verifier.test.mjs` | partly done |
+| 2.1 JSON-Schema inputs; structured outputs SHOULD declare schemas | every agent `function` has a `request` parameter; the site actions `get_desk`, `check_agent`, `recommend_limit` declare input schemas and describe their result fields | network test; `desk/tests/actions.test.mjs` | done |
 | 2.1 private context deny-by-default; network MUST name fields that may pass | no `sly_data` field is allowed downstream or upstream; the demo caller sets a private field and the test shows it is absent at the peer | `e2e: private context absent at peer` | planned |
-| 2.1 unavailable external capability: fail closed, report clearly, never bypass browser security | the live issuer lookup is attempted with `fetch` in CORS mode only; a failure is reported as "live lookup unavailable", never as a result | `verifier: offline issuer` + `e2e: offline issuer` | planned |
+| 2.1 unavailable external capability: fail closed, report clearly, never bypass browser security | live lookups use plain CORS `fetch` with `credentials: "omit"` and a timeout; off until the visitor allows them; a failure is reported as "live lookup unavailable: the result uses signed data only", never as a pass | `actions.test.mjs` "live lookups contact only the listed origins…", `verifier.test.mjs` "assess: signed data only, issuer offline…"; browser check in block 5 | done (unit), e2e planned |
 | 2.2 declarative data; instructions are public, not a confidentiality mechanism | no coded tools, no secrets in any published file; a test scans published files for key-like strings | network test "no coded tools and no secrets…" | done |
 
 ### 3. Browser execution and site composition
@@ -81,9 +81,9 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 | --- | --- | --- | --- |
 | Usable from a normal web page, executes the graph in JavaScript | `desk/index.html` boots the runtime with `site.js` | e2e boot | planned |
 | 3.1 reject malformed networks, duplicate or missing references, invalid front agent, unsupported executables before any model call | runtime validator; the demo serves a broken network and the test asserts the visible error and zero router requests | `e2e: invalid network` | planned |
-| 3.1 agent loop with tool calls, delegation, error propagation, bounded history | runtime; the scripted router drives `trust_desk → evidence_checker → website_verify_agent` | `e2e: delegation + grounded action` | planned |
+| 3.1 agent loop with tool calls, delegation, error propagation, bounded history | runtime; a scripted model drives `trust_desk → evidence_checker → website_check_agent` | `actions.test.mjs`; `e2e: delegation + grounded action` | done (runtime), e2e planned |
 | 3.1 ask before discovering or calling a third-party MCP service | Trust Desk declares no MCP server | n/a | planned |
-| 3.1 local site actions validated; destination and arguments shown before a write or irreversible operation | Trust Desk registers only `read` actions. The demo site's one irreversible action (`serve_request`) opens the confirmation dialog with origin and arguments | `node: action registry` + `e2e: irreversible dialog` | planned |
+| 3.1 local site actions validated; destination and arguments shown before a write or irreversible operation | Trust Desk registers only `read` actions, so the patched runtime's known gap (it runs `write` actions without a dialog) never applies here; the runtime validates arguments against each schema. The demo site's one irreversible action (`serve_request`) opens the confirmation dialog with origin and arguments | `actions.test.mjs` "every agentTools name is … read-only", "a malformed key never runs…"; `e2e: irreversible dialog` | done (desk), demo planned |
 | 3.1 timeout or disconnect after a write begins MUST be reported unknown; MUST NOT be repeated | the demo's `serve_request` can be made to time out; the test asserts receipt `unknown`, the visible wording, and exactly one call | `e2e: unknown outcome, no retry` | planned |
 | 3.1 finite limits on depth, agent calls, remote calls, concurrency, time; repeated calls are not a cycle | runtime limits (per visitor message: 4 partner calls, 1 per partner network, 24 agent calls, 90 s; 5 levels deep; skill `references/linking.md`, read 2026-11-14) | `e2e: over-budget`, `e2e: composition cycle` | planned |
 | 3.2 peer referenced by HTTPS URL whose last path part is the network name; manifest fetched from the base | demo calls `https://<desk base>/trust_desk` | `e2e: second origin` | planned |
@@ -120,7 +120,7 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 | Consent names destination origin and nature; a redirect to another origin is a new destination | runtime | `e2e: consent before contact` | planned |
 | Consent precedes third-party fetches | runtime | `e2e: consent before contact` | planned |
 | Private context by exception | see 2.1 | `e2e: private context absent at peer` | planned |
-| Fail closed: never begin or continue, never report success, report the failure | the verifier returns `invalid` or `unknown` with reasons; nothing that failed is shown as a pass | `verifier: vectors` | planned |
+| Fail closed: never begin or continue, never report success, report the failure | the verifier returns `invalid` or `unknown` with reasons; nothing that failed is shown as a pass; bad input is a refusal, never a throw | `verifier.test.mjs` "assess: false evidence is invalid…", `actions.test.mjs` "unreadable input is refused…" | done |
 | Runtime, not the model, owns confirmation | runtime + the demo's dialog | `e2e: irreversible dialog` | planned |
 | SHOULD expose router, contacted origins, calls, consent decisions, errors, receipts | runtime agents panel; the desk result lists every source it read and every source that failed | `e2e: evidence sources listed` | planned |
 
@@ -130,7 +130,7 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 | --- | --- | --- | --- |
 | Publish a two-agent HOCON network and a manifest from an ordinary HTTPS host | three agents, GitHub Pages | deploy check | planned |
 | Run it with the default router and model; also the BYOK path | scripted router stands in for Otari in CI; one manual run with a real key before submission | `e2e: default router used`, `e2e: BYOK path` | planned |
-| Call an internal agent and a grounded capability (registered local site action) | `trust_desk → evidence_checker → website_verify_agent` | `e2e: delegation + grounded action` | planned |
+| Call an internal agent and a grounded capability (registered local site action) | `trust_desk → evidence_checker → website_check_agent`, `limit_advisor → website_recommend_limit` | `actions.test.mjs` "the front agent delegates to evidence_checker…" (real runtime, scripted model); browser run in block 5 | done (runtime), e2e planned |
 | After approval, load an exact named network from a second origin and run it locally | the demo paid-API site calls Trust Desk | `e2e: second origin` | planned |
 | With a user key active, the second site never receives it and cannot change the router | request logs on both origins | `e2e: key never reaches peer`, `e2e: peer cannot change router` | planned |
 | Private context absent at the peer unless a named field is allowed | demo sets a private field | `e2e: private context absent at peer` | planned |
@@ -147,6 +147,28 @@ From the ERC-8004 review R-1111-01. The verifier and the agents use only these f
 | Stake | amount with its network label, for example "0.5 Gram active on TON testnet" | a stake with no network, a placeholder address |
 | Issuer offline | "live lookup unavailable: the result uses signed data only" | a level or count that was not read |
 | Agent card | "the card names key X; a card is only a claim until the key signs a challenge" | "the card proves" |
+
+## Grounded capability: the browser verifier
+
+`desk/verifier.js` checks tgtrust evidence in the browser with no server of its own. Each part mirrors the Python
+code and is proved equal on vectors that the Python code makes (`tests/desk_vectors.py` → `desk/tests/vectors.json`;
+`tests/test_desk_vectors.py` recomputes the expectations on every run; `desk/tests/verifier.test.mjs` asserts the
+browser gives the same answers):
+
+| Browser | Python | Vectors |
+| --- | --- | --- |
+| `agentKeyFromCard` | `client.agent_key_from_card` | 9 cards, exact error messages |
+| `checkCredential` | `client.CredentialFile.from_dict` + `issuer.verify_credential` (RSA-PSS by WebCrypto) | 8 credential files from two stand-in issuers |
+| `verifyRequest` | `gate.TrustGate.verify` (`tgtrust-req/v1`, Ed25519 by WebCrypto, nonce cache) | 18 requests, every error code |
+| `decide` | `gate.TrustGate.decide` (tier, evidence lines, Concordium fields) | 19 decisions, all five tiers |
+| `readConcordiumLink`, `linkLines` | `concordium.read_link`, `link_lines` | 8 recorded registry replies (`tests/golden/concordium/`) |
+
+`assess` is the desk's own summary on top of these (verified / partial / unknown / invalid), with the wording fixed in
+`WORDING`. The issuer key it trusts is pinned in `desk/issuers.js`; `tests/test_desk_issuers.py` recomputes its key id.
+
+Finding while mirroring: `gate.py` gives the Concordium tier to a `verified` key with a valid Concordium badge, not
+only to a `staked` one; `docs/TRUST_GATE.md` said "as above", which read as staked only. The table now says what the
+code does, and the desk's published policy text says the same.
 
 ## Open decisions
 

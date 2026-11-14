@@ -1,0 +1,3097 @@
+{
+ "agents": [
+  {
+   "public_hex": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "seed_hex": "24293d35e1a64e1cc3014b856ebfd1dadec1ffa2f85dc8e1b337c6cffbd95f18"
+  },
+  {
+   "public_hex": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0",
+   "seed_hex": "42d41daa5fee0fd99d0f46de1aa96bfad97999d1fbf06148f82cea237acc5071"
+  },
+  {
+   "public_hex": "39b1278e799b4722c46ec6085c0051ba3f69934c7f783482c589f1e326070161",
+   "seed_hex": "91c15154fe7ea74dda8f30c62fa78bbccab0cb4c8172a6ec2580a90cc264f4fb"
+  }
+ ],
+ "cards": [
+  {
+   "card": {
+    "capabilities": {
+     "extensions": [
+      {
+       "params": {
+        "agentKey": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2"
+       },
+       "uri": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1"
+      }
+     ]
+    },
+    "name": "a"
+   },
+   "name": "A2A extension"
+  },
+  {
+   "card": {
+    "capabilities": {
+     "extensions": [
+      {
+       "params": {
+        "agentKey": "889FD6DC324546BD645D9F7C6D1F1FE2FF294E7597D3AF178308C2C1FB6F99C2"
+       },
+       "uri": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1"
+      }
+     ]
+    }
+   },
+   "name": "A2A extension, upper case"
+  },
+  {
+   "card": {
+    "tgtrust": {
+     "agent_key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0"
+    }
+   },
+   "name": "ERC-8004 field"
+  },
+  {
+   "card": {
+    "capabilities": {
+     "extensions": [
+      {
+       "params": {
+        "agentKey": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0"
+       },
+       "uri": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1"
+      }
+     ]
+    },
+    "tgtrust": {
+     "agent_key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0"
+    }
+   },
+   "name": "both, same key"
+  },
+  {
+   "card": {
+    "capabilities": {
+     "extensions": [
+      {
+       "params": {
+        "agentKey": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2"
+       },
+       "uri": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1"
+      }
+     ]
+    },
+    "tgtrust": {
+     "agent_key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0"
+    }
+   },
+   "name": "two different keys"
+  },
+  {
+   "card": {
+    "capabilities": {
+     "extensions": [
+      {
+       "params": {},
+       "uri": "https://docs.concordium.com/a2a-extensions/concordium-badge/v1"
+      }
+     ]
+    }
+   },
+   "name": "no tgtrust key"
+  },
+  {
+   "card": {
+    "tgtrust": {
+     "agent_key": "abc"
+    }
+   },
+   "name": "short key"
+  },
+  {
+   "card": [
+    "not",
+    "a",
+    "card"
+   ],
+   "name": "not an object"
+  },
+  {
+   "card": {
+    "capabilities": {
+     "extensions": [
+      {
+       "uri": "https://github.com/miinimal/tgtrust/blob/main/docs/CONCORDIUM.md#a2a-extension-v1"
+      }
+     ]
+    }
+   },
+   "name": "extension without params"
+  }
+ ],
+ "credentials": [
+  {
+   "file": {
+    "agent_public_key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "epoch": "vectors-main",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "d0f16245be77c971",
+    "salt": "Qu6nBmpA3RDxFDk9mGX5KA",
+    "signature": "i2SUjauPMx3wCEsYJPaEIXk1UMzCauvfVpWdgVGVNRNdIveYiAd8wl-35xcGSv4a796RPpf7SH9Ww1dLQ0hF1mUTvZJh9k517jDpt1SY0tgkD_-wl4GHUfmrwVaYmL8t_utcs_dFI4N-Kiw7VEEyQ-nye5eLlXcHKLghiupUCKwFtr30fgznM254qiuT3CFH3B91ODBR5ywlsj9wBLUVICUFo44pLA7TaebylmV_jaCKU1yQcnceUIfuR4WNWewCBDkNka1LM5teg8m1AtbT2P82GWS9c5aTqO5iwqv7chMsup3_H-PKNj7dUt12PLNK5qwgr6WNzUrxY6tQheH5WQ",
+    "token": "Ea-ve53BTAbppIsTyIXXcXZUP5ge1rSsyiazZnmVajk"
+   },
+   "issuer": "main",
+   "name": "valid, bound to alice"
+  },
+  {
+   "file": {
+    "agent_public_key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "epoch": "vectors-other",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "160983b06e074d65",
+    "salt": "m23j3tYGwO5iO8M91cB27w",
+    "signature": "DhHEqJ2WC8ExkemebEpxfu-n0vkKOIKt67N7cgKOeJxz62dom72Bg9zRwwkhYqqAo_xVFtE3pEMiWYUSPRTFmdP61TdC6td4gnVkrHtkMFJW26kyPDyNKvmbTc0jdzeC4UbmQaefLSaD71Hjm67gj4veCx_3ctBJGOtRC9Dq1SD0LQnAf71xTtR1q1whUcJNZjKe09QYvunSeyE0JK5kAZsaPDd-8onnvLG-tSqR0PdSWs6At3IkgIYloDlrj86TJ7CWGqQc4dMaJzhZSiT41WMO3GgVzjEwutPR1AYMxmHVXhUxkZZjUsibdgp-2387EDa8rIlu1NNuRoHnS_4xpA",
+    "token": "MaxbrgRoX13Qt8xfifAIpeyvdyVteWKsHQ4J2mU9v5E"
+   },
+   "issuer": "main",
+   "name": "signature from another issuer"
+  },
+  {
+   "file": {
+    "agent_public_key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0",
+    "epoch": "vectors-other",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "160983b06e074d65",
+    "salt": "2GsXsPbjpIPqrQlbYi3SCA",
+    "signature": "aCtYYGTUKWUR3Gjo8bE1FSa-tW7RWc6s-CJjE45M-hEa6xYmO-_xvnXmfPUxH6wwTa1OrJmH3X8U-DYUiTB3Q0O2b5EqLW0QrUpsDmy69h-VojeseNR_zwNoQ0D-u6mY0IqFF5cJ1Z5J3HNnbOdDt7ghJZsBwSkFgKkQtUEF6avSV_I9skaFE5EImriqhH8qJmYmB00yyCWmysVvQ6vT0YXiyv1cdOkI0p2gFkccACEhFfCsm2Y0zy_t8DtMiv_6zpO3PB6tw_fk7Qv-aoPfE44dfQinPpX4kVSjYswhp6YeurYBFTDP9eNvlrAgrRoXjNe12CAFPhd9lTsiJNoKbA",
+    "token": "5KRX1Xn0z2l6IJTPV42wI6PIxFEsxlArKcDhwgIxikw"
+   },
+   "issuer": "other",
+   "name": "checked against the issuer that signed it"
+  },
+  {
+   "file": {
+    "agent_public_key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0",
+    "epoch": "vectors-main",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "d0f16245be77c971",
+    "salt": "Qu6nBmpA3RDxFDk9mGX5KA",
+    "signature": "i2SUjauPMx3wCEsYJPaEIXk1UMzCauvfVpWdgVGVNRNdIveYiAd8wl-35xcGSv4a796RPpf7SH9Ww1dLQ0hF1mUTvZJh9k517jDpt1SY0tgkD_-wl4GHUfmrwVaYmL8t_utcs_dFI4N-Kiw7VEEyQ-nye5eLlXcHKLghiupUCKwFtr30fgznM254qiuT3CFH3B91ODBR5ywlsj9wBLUVICUFo44pLA7TaebylmV_jaCKU1yQcnceUIfuR4WNWewCBDkNka1LM5teg8m1AtbT2P82GWS9c5aTqO5iwqv7chMsup3_H-PKNj7dUt12PLNK5qwgr6WNzUrxY6tQheH5WQ",
+    "token": "Ea-ve53BTAbppIsTyIXXcXZUP5ge1rSsyiazZnmVajk"
+   },
+   "issuer": "main",
+   "name": "token not bound to the stated key"
+  },
+  {
+   "file": {
+    "agent_public_key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "epoch": "vectors-main",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "d0f16245be77c971",
+    "salt": "Qu6nBmpA3RDxFDk9mGX5KA",
+    "signature": "i2SUjauPMx3wCEoYJPaEIXk1UMzCauvfVpWdgVGVNRNdIveYiAd8wl-35xcGSv4a796RPpf7SH9Ww1dLQ0hF1mUTvZJh9k517jDpt1SY0tgkD_-wl4GHUfmrwVaYmL8t_utcs_dFI4N-Kiw7VEEyQ-nye5eLlXcHKLghiupUCKwFtr30fgznM254qiuT3CFH3B91ODBR5ywlsj9wBLUVICUFo44pLA7TaebylmV_jaCKU1yQcnceUIfuR4WNWewCBDkNka1LM5teg8m1AtbT2P82GWS9c5aTqO5iwqv7chMsup3_H-PKNj7dUt12PLNK5qwgr6WNzUrxY6tQheH5WQ",
+    "token": "Ea-ve53BTAbppIsTyIXXcXZUP5ge1rSsyiazZnmVajk"
+   },
+   "issuer": "main",
+   "name": "signature altered"
+  },
+  {
+   "file": {
+    "agent_public_key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "epoch": "vectors-main",
+    "format": "tgtrust-credential/v0",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "d0f16245be77c971",
+    "salt": "Qu6nBmpA3RDxFDk9mGX5KA",
+    "signature": "i2SUjauPMx3wCEsYJPaEIXk1UMzCauvfVpWdgVGVNRNdIveYiAd8wl-35xcGSv4a796RPpf7SH9Ww1dLQ0hF1mUTvZJh9k517jDpt1SY0tgkD_-wl4GHUfmrwVaYmL8t_utcs_dFI4N-Kiw7VEEyQ-nye5eLlXcHKLghiupUCKwFtr30fgznM254qiuT3CFH3B91ODBR5ywlsj9wBLUVICUFo44pLA7TaebylmV_jaCKU1yQcnceUIfuR4WNWewCBDkNka1LM5teg8m1AtbT2P82GWS9c5aTqO5iwqv7chMsup3_H-PKNj7dUt12PLNK5qwgr6WNzUrxY6tQheH5WQ",
+    "token": "Ea-ve53BTAbppIsTyIXXcXZUP5ge1rSsyiazZnmVajk"
+   },
+   "issuer": "main",
+   "name": "wrong format"
+  },
+  {
+   "file": {
+    "agent_public_key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "epoch": "vectors-main",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "d0f16245be77c971",
+    "signature": "i2SUjauPMx3wCEsYJPaEIXk1UMzCauvfVpWdgVGVNRNdIveYiAd8wl-35xcGSv4a796RPpf7SH9Ww1dLQ0hF1mUTvZJh9k517jDpt1SY0tgkD_-wl4GHUfmrwVaYmL8t_utcs_dFI4N-Kiw7VEEyQ-nye5eLlXcHKLghiupUCKwFtr30fgznM254qiuT3CFH3B91ODBR5ywlsj9wBLUVICUFo44pLA7TaebylmV_jaCKU1yQcnceUIfuR4WNWewCBDkNka1LM5teg8m1AtbT2P82GWS9c5aTqO5iwqv7chMsup3_H-PKNj7dUt12PLNK5qwgr6WNzUrxY6tQheH5WQ",
+    "token": "Ea-ve53BTAbppIsTyIXXcXZUP5ge1rSsyiazZnmVajk"
+   },
+   "issuer": "main",
+   "name": "missing salt"
+  },
+  {
+   "file": {
+    "agent_public_key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "epoch": "vectors-main",
+    "format": "tgtrust-credential/v1",
+    "issuer": "https://issuer.example/v1",
+    "key_id": "160983b06e074d65",
+    "salt": "Qu6nBmpA3RDxFDk9mGX5KA",
+    "signature": "i2SUjauPMx3wCEsYJPaEIXk1UMzCauvfVpWdgVGVNRNdIveYiAd8wl-35xcGSv4a796RPpf7SH9Ww1dLQ0hF1mUTvZJh9k517jDpt1SY0tgkD_-wl4GHUfmrwVaYmL8t_utcs_dFI4N-Kiw7VEEyQ-nye5eLlXcHKLghiupUCKwFtr30fgznM254qiuT3CFH3B91ODBR5ywlsj9wBLUVICUFo44pLA7TaebylmV_jaCKU1yQcnceUIfuR4WNWewCBDkNka1LM5teg8m1AtbT2P82GWS9c5aTqO5iwqv7chMsup3_H-PKNj7dUt12PLNK5qwgr6WNzUrxY6tQheH5WQ",
+    "token": "Ea-ve53BTAbppIsTyIXXcXZUP5ge1rSsyiazZnmVajk"
+   },
+   "issuer": "main",
+   "name": "key id of another issuer"
+  }
+ ],
+ "decisions": [
+  {
+   "badge": null,
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {},
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "anonymous",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": null,
+   "body_b64": "eA==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "bad signature",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": null,
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "lookup failed",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "level": "superb"
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "malformed badge",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "badge for another key",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "unknown",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": false
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "unknown",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "revoked",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": false
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "revoked",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 3,
+      "distinct_counterparties": 3,
+      "with_staked_counterparty": 1
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "verified",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 2,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 1
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "verified, dispute upheld",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "staked",
+    "registered_at": 1794613600,
+    "stake": {
+     "amount_gram": "0.5",
+     "amount_nanogram": 500000000,
+     "checked_at": 1794700000,
+     "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+     "found": true,
+     "network": "testnet",
+     "unlock_at": 0,
+     "withdrawing": false
+    },
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "staked enough",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "staked",
+    "registered_at": 1794613600,
+    "stake": {
+     "amount_gram": "0.499999999",
+     "amount_nanogram": 499999999,
+     "checked_at": 1794700000,
+     "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+     "found": true,
+     "network": "testnet",
+     "unlock_at": 0,
+     "withdrawing": false
+    },
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "staked below minimum",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "staked",
+    "registered_at": 1794613600,
+    "stake": {
+     "amount_gram": "0.9",
+     "amount_nanogram": 900000000,
+     "checked_at": 1794700000,
+     "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+     "found": true,
+     "network": "testnet",
+     "unlock_at": 0,
+     "withdrawing": true
+    },
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "staked, withdrawing",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 1
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "staked",
+    "registered_at": 1794613600,
+    "stake": {
+     "amount_gram": "0.9",
+     "amount_nanogram": 900000000,
+     "checked_at": 1794700000,
+     "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+     "found": true,
+     "network": "testnet",
+     "unlock_at": 0,
+     "withdrawing": false
+    },
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "method": "POST",
+   "name": "staked, dispute upheld",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": null,
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": null,
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "staked",
+    "registered_at": 1794613600,
+    "stake": {
+     "amount_gram": "0.9",
+     "amount_nanogram": 900000000,
+     "checked_at": 1794700000,
+     "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+     "found": true,
+     "network": "testnet",
+     "unlock_at": 0,
+     "withdrawing": false
+    },
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "link": {
+    "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+    "badge": "JyP9WrFnp62SuD2Gdquuv",
+    "badge_valid": true,
+    "binding_status": "Active",
+    "error": null,
+    "network": "testnet",
+    "status": "Active"
+   },
+   "method": "POST",
+   "name": "staked + Concordium valid",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "link": {
+    "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+    "badge": "JyP9WrFnp62SuD2Gdquuv",
+    "badge_valid": true,
+    "binding_status": "Active",
+    "error": null,
+    "network": "testnet",
+    "status": "Active"
+   },
+   "method": "POST",
+   "name": "verified + Concordium valid",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "staked",
+    "registered_at": 1794613600,
+    "stake": {
+     "amount_gram": "0.9",
+     "amount_nanogram": 900000000,
+     "checked_at": 1794700000,
+     "contract": "kQD0dNGo6GJnxq7Dc5HWcEfoBWI8UkUwZ6-w7gpwm8G11z-w",
+     "found": true,
+     "network": "testnet",
+     "unlock_at": 0,
+     "withdrawing": false
+    },
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "link": {
+    "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+    "badge": "JyP9WrFnp62SuD2Gdquuv",
+    "badge_valid": false,
+    "binding_status": "Active",
+    "error": null,
+    "network": "testnet",
+    "status": "Active"
+   },
+   "method": "POST",
+   "name": "Concordium badge not valid",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "link": {
+    "account": null,
+    "badge": null,
+    "badge_valid": null,
+    "binding_status": null,
+    "error": null,
+    "network": "testnet",
+    "status": null
+   },
+   "method": "POST",
+   "name": "Concordium not bound",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "link": {
+    "account": null,
+    "badge": null,
+    "badge_valid": null,
+    "binding_status": null,
+    "error": "registry answered HTTP 503",
+    "network": "testnet",
+    "status": null
+   },
+   "method": "POST",
+   "name": "Concordium read failed",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  },
+  {
+   "badge": {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "checked_at": 1794700000,
+    "history": {
+     "days_registered": 1,
+     "deals": {
+      "count": 0,
+      "distinct_counterparties": 0,
+      "with_staked_counterparty": 0
+     },
+     "disputes": {
+      "filed_against": 0,
+      "filed_by": 0,
+      "open_against": 0,
+      "upheld_against": 0
+     },
+     "registered_at": 1794613600
+    },
+    "issuer_key_id": "d0f16245be77c971",
+    "level": "verified",
+    "registered_at": 1794613600,
+    "stake": null,
+    "unique_owner": true
+   },
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "issuer_url": "https://issuer.example/v1",
+   "link": {
+    "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+    "badge": "JyP9WrFnp62SuD2Gdquuv",
+    "badge_valid": true,
+    "binding_status": "Revoked",
+    "error": null,
+    "network": "testnet",
+    "status": "Active"
+   },
+   "method": "POST",
+   "name": "Concordium revoked binding",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "policy": {
+    "anonymous": {
+     "allowed": false,
+     "credit_limit": 0,
+     "name": "anonymous",
+     "prepay": true
+    },
+    "concordium_tier": {
+     "allowed": true,
+     "credit_limit": 5000,
+     "name": "staked+concordium",
+     "prepay": false
+    },
+    "max_upheld_disputes": 0,
+    "min_stake_nanogram": 500000000,
+    "require_concordium": "testnet",
+    "staked": {
+     "allowed": true,
+     "credit_limit": 1000,
+     "name": "staked",
+     "prepay": false
+    },
+    "unknown": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "unknown",
+     "prepay": true
+    },
+    "verified": {
+     "allowed": true,
+     "credit_limit": 0,
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  }
+ ],
+ "expected": {
+  "cards": [
+   {
+    "error": null,
+    "key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2"
+   },
+   {
+    "error": null,
+    "key": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2"
+   },
+   {
+    "error": null,
+    "key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0"
+   },
+   {
+    "error": null,
+    "key": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0"
+   },
+   {
+    "error": "the card names two different tgtrust agent keys",
+    "key": null
+   },
+   {
+    "error": "the card has no tgtrust agent key (no tgtrust extension, no tgtrust.agent_key)",
+    "key": null
+   },
+   {
+    "error": "the card's tgtrust agent key is not 64 hex characters",
+    "key": null
+   },
+   {
+    "error": "the card is not a JSON object",
+    "key": null
+   },
+   {
+    "error": "the card's tgtrust agent key is not 64 hex characters",
+    "key": null
+   }
+  ],
+  "credentials": [
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null,
+    "key_id_matches": true,
+    "parsed": true,
+    "signature_valid": true
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null,
+    "key_id_matches": false,
+    "parsed": true,
+    "signature_valid": false
+   },
+   {
+    "agent": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0",
+    "error": null,
+    "key_id_matches": true,
+    "parsed": true,
+    "signature_valid": true
+   },
+   {
+    "error": "credential file is inconsistent: the token is not bound to this agent key",
+    "key_id_matches": null,
+    "parsed": false,
+    "signature_valid": null
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null,
+    "key_id_matches": true,
+    "parsed": true,
+    "signature_valid": false
+   },
+   {
+    "error": "not a tgtrust credential file",
+    "key_id_matches": null,
+    "parsed": false,
+    "signature_valid": null
+   },
+   {
+    "error": "credential file is malformed",
+    "key_id_matches": null,
+    "parsed": false,
+    "signature_valid": null
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null,
+    "key_id_matches": false,
+    "parsed": true,
+    "signature_valid": true
+   }
+  ],
+  "decisions": [
+   {
+    "agent": null,
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: none (anonymous caller)"
+    ],
+    "level": null,
+    "proven": false,
+    "tier": {
+     "allowed": false,
+     "creditLimit": "0",
+     "name": "anonymous",
+     "prepay": true
+    }
+   },
+   {
+    "agent": null,
+    "concordium": null,
+    "error": "bad_signature",
+    "evidence": [
+     "request signature: rejected (bad_signature)"
+    ],
+    "level": null,
+    "proven": false,
+    "tier": {
+     "allowed": false,
+     "creditLimit": "0",
+     "name": "anonymous",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": "badge_lookup",
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust badge: lookup failed (_LookupFailed); treated as unknown"
+    ],
+    "level": "unknown",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": "badge_malformed",
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust badge: malformed or for another key; treated as unknown"
+    ],
+    "level": "unknown",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": "badge_malformed",
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust badge: malformed or for another key; treated as unknown"
+    ],
+    "level": "unknown",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: unknown [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]"
+    ],
+    "level": "unknown",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: revoked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]"
+    ],
+    "level": "revoked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: verified [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]"
+    ],
+    "level": "verified",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "verified",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: verified [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "disputes upheld against it: 1 (policy allows 0); held at the unknown tier"
+    ],
+    "level": "verified",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: staked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "stake: 500000000 nanogram active on TON testnet"
+    ],
+    "level": "staked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "1000",
+     "name": "staked",
+     "prepay": false
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: staked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "stake: 499999999 nanogram, below the policy minimum 500000000"
+    ],
+    "level": "staked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "verified",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: staked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "stake: 0 nanogram, below the policy minimum 500000000"
+    ],
+    "level": "staked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "verified",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": null,
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: staked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "disputes upheld against it: 1 (policy allows 0); held at the unknown tier"
+    ],
+    "level": "staked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "unknown",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": {
+     "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+     "badge": "JyP9WrFnp62SuD2Gdquuv",
+     "badgeValid": true,
+     "binding": "Active",
+     "error": null,
+     "network": "testnet"
+    },
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: staked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "stake: 900000000 nanogram active on TON testnet",
+     "Concordium: key bound to 4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu, badge JyP9WrFnp62SuD2Gdquuv valid [source: Concordium testnet Agent Registry]"
+    ],
+    "level": "staked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "5000",
+     "name": "staked+concordium",
+     "prepay": false
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": {
+     "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+     "badge": "JyP9WrFnp62SuD2Gdquuv",
+     "badgeValid": true,
+     "binding": "Active",
+     "error": null,
+     "network": "testnet"
+    },
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: verified [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "Concordium: key bound to 4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu, badge JyP9WrFnp62SuD2Gdquuv valid [source: Concordium testnet Agent Registry]"
+    ],
+    "level": "verified",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "5000",
+     "name": "staked+concordium",
+     "prepay": false
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": {
+     "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+     "badge": "JyP9WrFnp62SuD2Gdquuv",
+     "badgeValid": false,
+     "binding": "Active",
+     "error": null,
+     "network": "testnet"
+    },
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: staked [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "stake: 900000000 nanogram active on TON testnet",
+     "Concordium: not counted (binding Active, badge valid False)"
+    ],
+    "level": "staked",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "1000",
+     "name": "staked",
+     "prepay": false
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": {
+     "account": null,
+     "badge": null,
+     "badgeValid": null,
+     "binding": null,
+     "error": null,
+     "network": "testnet"
+    },
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: verified [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "Concordium: not counted (not bound)"
+    ],
+    "level": "verified",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "verified",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": {
+     "account": null,
+     "badge": null,
+     "badgeValid": null,
+     "binding": null,
+     "error": "registry answered HTTP 503",
+     "network": "testnet"
+    },
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: verified [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "Concordium: not counted (registry answered HTTP 503)"
+    ],
+    "level": "verified",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "verified",
+     "prepay": true
+    }
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "concordium": {
+     "account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+     "badge": "JyP9WrFnp62SuD2Gdquuv",
+     "badgeValid": true,
+     "binding": "Revoked",
+     "error": null,
+     "network": "testnet"
+    },
+    "error": null,
+    "evidence": [
+     "request signature: valid for agent key 889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2 [tgtrust-req/v1]",
+     "tgtrust level: verified [source: https://issuer.example/v1/agents/889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2/badge]",
+     "Concordium: not counted (binding Revoked, badge valid True)"
+    ],
+    "level": "verified",
+    "proven": true,
+    "tier": {
+     "allowed": true,
+     "creditLimit": "0",
+     "name": "verified",
+     "prepay": true
+    }
+   }
+  ],
+  "links": [
+   {
+    "lines": [
+     "Concordium: this key is not bound to any Concordium account [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": null,
+     "badge": null,
+     "badge_valid": null,
+     "binding_status": null,
+     "error": null,
+     "network": "testnet",
+     "status": null
+    }
+   },
+   {
+    "lines": [
+     "Concordium: key bound to account 45GYzC\u2026mRh6 (accounts are opened only with an identity from an identity provider; the person is not disclosed) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]",
+     "Concordium badge: JyP9WZqZqhYXTLTYqJYcT, valid (status Active) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+     "badge": "JyP9WZqZqhYXTLTYqJYcT",
+     "badge_valid": true,
+     "binding_status": "Active",
+     "error": null,
+     "network": "testnet",
+     "status": "Active"
+    }
+   },
+   {
+    "lines": [
+     "Concordium: key bound to account 45GYzC\u2026mRh6 (accounts are opened only with an identity from an identity provider; the person is not disclosed) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]",
+     "Concordium badge: JyP9WZqZqhYXTLTYqJYcT, NOT valid (status Active) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+     "badge": "JyP9WZqZqhYXTLTYqJYcT",
+     "badge_valid": false,
+     "binding_status": "Active",
+     "error": null,
+     "network": "testnet",
+     "status": "Active"
+    }
+   },
+   {
+    "lines": [
+     "Concordium: binding to account 45GYzC\u2026mRh6 is Revoked, not active [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+     "badge": null,
+     "badge_valid": null,
+     "binding_status": "Revoked",
+     "error": null,
+     "network": "testnet",
+     "status": null
+    }
+   },
+   {
+    "lines": [
+     "Concordium: key bound to account 45GYzC\u2026mRh6 (accounts are opened only with an identity from an identity provider; the person is not disclosed) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]",
+     "Concordium badge: JyP9WZqZqhYXTLTYqJYcT, NOT valid (status Active, badge owner is a different account than the key binding) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+     "badge": "JyP9WZqZqhYXTLTYqJYcT",
+     "badge_valid": false,
+     "binding_status": "Active",
+     "error": "badge owner is a different account than the key binding",
+     "network": "testnet",
+     "status": "Active"
+    }
+   },
+   {
+    "lines": [
+     "Concordium: key bound to account 45GYzC\u2026mRh6 (accounts are opened only with an identity from an identity provider; the person is not disclosed) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]",
+     "Concordium badge: none for this key [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+     "badge": null,
+     "badge_valid": null,
+     "binding_status": "Active",
+     "error": null,
+     "network": "testnet",
+     "status": null
+    }
+   },
+   {
+    "lines": [
+     "Concordium: unknown, the read failed (not a Concordium account address) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": null,
+     "badge": null,
+     "badge_valid": null,
+     "binding_status": null,
+     "error": "not a Concordium account address",
+     "network": "testnet",
+     "status": null
+    }
+   },
+   {
+    "lines": [
+     "Concordium: unknown, the read failed (registry answered HTTP 503) [source: Concordium testnet Agent Registry, CIS-8 / CIS-8004]"
+    ],
+    "link": {
+     "account": null,
+     "badge": null,
+     "badge_valid": null,
+     "binding_status": null,
+     "error": "registry answered HTTP 503",
+     "network": "testnet",
+     "status": null
+    }
+   }
+  ],
+  "requests": [
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null
+   },
+   {
+    "agent": null,
+    "error": null
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null
+   },
+   {
+    "agent": null,
+    "error": "missing_header"
+   },
+   {
+    "agent": null,
+    "error": "bad_signature"
+   },
+   {
+    "agent": null,
+    "error": "bad_signature"
+   },
+   {
+    "agent": null,
+    "error": "bad_signature"
+   },
+   {
+    "agent": null,
+    "error": "stale"
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null
+   },
+   {
+    "agent": null,
+    "error": "replay"
+   },
+   {
+    "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "error": null
+   },
+   {
+    "agent": null,
+    "error": "bad_agent"
+   },
+   {
+    "agent": null,
+    "error": "bad_time"
+   },
+   {
+    "agent": null,
+    "error": "bad_nonce"
+   },
+   {
+    "agent": "39b1278e799b4722c46ec6085c0051ba3f69934c7f783482c589f1e326070161",
+    "error": null
+   },
+   {
+    "agent": null,
+    "error": "bad_signature"
+   },
+   {
+    "agent": null,
+    "error": "bad_signature"
+   },
+   {
+    "agent": null,
+    "error": "bad_signature"
+   }
+  ]
+ },
+ "issuers": {
+  "main": {
+   "credential_prefix": "tgtrust/v1/credential:",
+   "epoch": "vectors-main",
+   "key_id": "d0f16245be77c971",
+   "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoepqR13ZSA4jvK9yiJf5\nPB/6oohKwQCSdA3EIA9UZFFFEKJq889X+LK32zTft+PIpgAXre4JKczeXMMuyr8+\nLhgX3lQqMFB5puiyPqitbz7seP3MZ7fnh7D2V/PFVsw+eVg1i1Az8rOnO7FTZiPG\nKWzwHyS+9LzPC5jF6Eg1SJZaEEqAOXy1ghsPJwgRUL+PcdtQy3PbUq3TUcEvOC4H\n66LoFQvB31cK+/0GLQmjWIuaAqHufep1oMaZ9uPJbwqXqBoZfiTp948ZjhtIVg2T\n3z8E4uJhyacpTNzwgQnRbRsP4jTqSqW09e9kEytZeIwikZ4lFF/+mkEUTeQLP0A6\nhwIDAQAB\n-----END PUBLIC KEY-----\n"
+  },
+  "other": {
+   "credential_prefix": "tgtrust/v1/credential:",
+   "epoch": "vectors-other",
+   "key_id": "160983b06e074d65",
+   "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiRP/p59Aymf2f0FP528s\nMzErjM5rAwTN3tvmZTZLliqfWyp7++GiXcexEUmII1q8Y0s1gGUmeKJApzbHqFs3\novPvf0DhR6BYpOtVvt1l2M/eRu7TPOy5XfJRh4ThUGxN30sjO3oBURou74Q9kca/\nOTE7ovuG0Wx3QXHILap396D3CcR3cdPIQEZxdK6rknem41GRNOYDHlpOeF4941pB\nix2wMt6lmHGLIrd9ME5Y9lq8VYvU2aun7CmLcUv9mC0TxCXBv/dw3hV/H9vAju85\nAxl5kUU3PonXAJY2er3GfWQ2ULDSCOZFnm2MfwO21ZKh+mT6gCsk6RVI1VGTYHZN\nkwIDAQAB\n-----END PUBLIC KEY-----\n"
+  }
+ },
+ "links": [
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "not bound",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "null",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "bound, badge valid",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"external_key\": {\n    \"namespace\": \"eip155:1\",\n    \"key_type\": \"secp256k1-compressed\",\n    \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"\n  },\n  \"proof_scheme\": \"ethereum-personal-sign\",\n  \"metadata\": [],\n  \"status\": \"Active\",\n  \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "bound, badge not valid",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": false,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"external_key\": {\n    \"namespace\": \"eip155:1\",\n    \"key_type\": \"secp256k1-compressed\",\n    \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"\n  },\n  \"proof_scheme\": \"ethereum-personal-sign\",\n  \"metadata\": [],\n  \"status\": \"Active\",\n  \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "binding revoked",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\"network\": \"testnet\", \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\", \"external_key\": {\"namespace\": \"eip155:1\", \"key_type\": \"secp256k1-compressed\", \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"}, \"proof_scheme\": \"ethereum-personal-sign\", \"metadata\": [], \"status\": \"Revoked\", \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "badge owned by another account",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "4Mk8CZ3QSgRmvRVfnurx8a1WcLgwyS9dfkJU63eAPJf5JQMDsu",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"external_key\": {\n    \"namespace\": \"eip155:1\",\n    \"key_type\": \"secp256k1-compressed\",\n    \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"\n  },\n  \"proof_scheme\": \"ethereum-personal-sign\",\n  \"metadata\": [],\n  \"status\": \"Active\",\n  \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "bound, no agent",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "null",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"external_key\": {\n    \"namespace\": \"eip155:1\",\n    \"key_type\": \"secp256k1-compressed\",\n    \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"\n  },\n  \"proof_scheme\": \"ethereum-personal-sign\",\n  \"metadata\": [],\n  \"status\": \"Active\",\n  \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "name": "owner is not an address",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\"network\": \"testnet\", \"owner\": \"xyz\", \"external_key\": {\"namespace\": \"eip155:1\", \"key_type\": \"secp256k1-compressed\", \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"}, \"proof_scheme\": \"ethereum-personal-sign\", \"metadata\": [], \"status\": \"Active\", \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  },
+  {
+   "agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+   "http": 503,
+   "name": "registry down",
+   "network": "testnet",
+   "replies": {
+    "agent_by_external_reference": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"token_address\": \"JyP9WZqZqhYXTLTYqJYcT\",\n  \"token_id\": \"1166\",\n  \"token_id_u64\": 1166,\n  \"owner_account\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"agent_uri\": \"https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json\",\n  \"metadata_hash_hex\": \"3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4\",\n  \"external_reference\": {\n    \"contract_address\": {\n      \"index\": 12801,\n      \"subindex\": 0\n    },\n    \"kind\": \"Cis8\",\n    \"key\": {\n      \"namespace\": \"eip155:1\",\n      \"key_type\": \"secp256k1-uncompressed\",\n      \"public_key_hex\": \"04d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0d9666912397494579af37ef24ca7eaa38205b28b0f352d7b229c10eb9606ff47\"\n    }\n  },\n  \"agent_wallet\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"status\": \"Active\",\n  \"registered_at\": \"2026-11-12T14:54:57.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    },
+    "badge_check": {
+     "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+     "badge_valid": true,
+     "card_sha256": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+     "checks": {
+      "badge_embedding": "extension",
+      "badge_present": true,
+      "badge_well_formed": true,
+      "card_fetched": true,
+      "contracts_match": true,
+      "extension_conformant": true,
+      "has_agent_uri": true,
+      "hash_matches_on_chain": true,
+      "on_chain_agent_found": true,
+      "owner_matches": true,
+      "status_active": true,
+      "token_address_matches": true,
+      "verification_present": true,
+      "verify_present": true,
+      "verify_url_matches": true
+     },
+     "expected": {
+      "chain": "ccd:4221332d34e1694168c2a0c0b3fd0f27",
+      "contracts": {
+       "cis8": "12801,0",
+       "cis8004": "12802,0"
+      }
+     },
+     "http_status": 200,
+     "issues": [],
+     "network": "testnet",
+     "on_chain": {
+      "agent_uri": "https://registry-testnet.modernmiracle.org/agents/1166/.well-known/agent-card.json",
+      "metadata_hash_hex": "3344b6131792a43347053e95aa33a9e16547444eaeafaa034121df55e5b20ec4",
+      "owner_account": "45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6",
+      "status": "Active"
+     },
+     "token_address": "JyP9WZqZqhYXTLTYqJYcT",
+     "token_id": 1166
+    },
+    "owner_of_key": {
+     "id": 2,
+     "jsonrpc": "2.0",
+     "result": {
+      "content": [
+       {
+        "text": "{\n  \"network\": \"testnet\",\n  \"owner\": \"45GYzCjNUQurQEN8TRmWDjdYhfKJgrusZ6jUGs373NamwjmRh6\",\n  \"external_key\": {\n    \"namespace\": \"eip155:1\",\n    \"key_type\": \"secp256k1-compressed\",\n    \"public_key_hex\": \"03d7723f7096497441f7b7c5abb6d121fa7dcf3b53b0d88a584876b581f3cf22b0\"\n  },\n  \"proof_scheme\": \"ethereum-personal-sign\",\n  \"metadata\": [],\n  \"status\": \"Active\",\n  \"last_updated\": \"2026-11-12T14:54:51.270+00:00\"\n}",
+        "type": "text"
+       }
+      ],
+      "isError": false
+     }
+    }
+   }
+  }
+ ],
+ "note": "Made by tests/desk_vectors.py with the Python implementation; stand-in issuer keys.",
+ "requests": [
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "valid",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {},
+   "method": "POST",
+   "name": "no tgtrust headers",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "x-tgtrust-agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "x-tgtrust-nonce": "nonce-0123456789abcd",
+    "x-tgtrust-signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "x-tgtrust-time": "1794700000"
+   },
+   "method": "POST",
+   "name": "header names in lower case",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "missing signature",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoyfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "body changed",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "path changed",
+   "now": 1794700000,
+   "path": "/v1/answer?q=2"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "GET",
+   "name": "method changed",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "stale",
+   "now": 1794700121,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "edge of the window",
+   "now": 1794700120,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "replayed nonce",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1",
+   "seen": [
+    [
+     "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+     "nonce-0123456789abcd"
+    ]
+   ]
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889FD6DC324546BD645D9F7C6D1F1FE2FF294E7597D3AF178308C2C1FB6F99C2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "agent key upper case",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "bad agent key",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "soon"
+   },
+   "method": "POST",
+   "name": "bad time",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "short",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "short nonce",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "",
+   "headers": {
+    "X-Tgtrust-Agent": "39b1278e799b4722c46ec6085c0051ba3f69934c7f783482c589f1e326070161",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "vrAWp6LEVcqh_RmMZa7LCJndredXQOLl3nsGQ7smbEzEM2tK_FSXAVxgIE8CXFCzy35MLz4c4clEhdD0DHwsDA",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "GET",
+   "name": "GET with empty body",
+   "now": 1794700000,
+   "path": "/v1/price"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "295a61ebd14217695de0f3f0bbfdb6019f866ea4e4318173e91750c5cfa6bac0",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "keTdh7iU661Ub40_0p6xHgJyMceP5arUwhB-64tJUEdU_rDifR_DjQA38jzrIntHmPOIR5wONREVoeU9WI0NDw",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "signature of another key",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "+/+/",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "signature not base64url",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  },
+  {
+   "body_b64": "eyJxIjoxfQ==",
+   "headers": {
+    "X-Tgtrust-Agent": "889fd6dc324546bd645d9f7c6d1f1fe2ff294e7597d3af178308c2c1fb6f99c2",
+    "X-Tgtrust-Nonce": "nonce-0123456789abcd",
+    "X-Tgtrust-Signature": "AAAA",
+    "X-Tgtrust-Time": "1794700000"
+   },
+   "method": "POST",
+   "name": "signature too short",
+   "now": 1794700000,
+   "path": "/v1/answer?q=1"
+  }
+ ]
+}
