@@ -1,0 +1,51 @@
+name: pages
+# Publishes Trust Desk (desk/) to GitHub Pages: https://miinimal.github.io/tgtrust/
+# Runs only when desk/ changes on main, or by hand. The checks workflow tests everything first on the pull request.
+# Pages must be enabled once in the repository settings (Settings → Pages → Source: GitHub Actions).
+on:
+  push:
+    branches: [main]
+    paths: ["desk/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: The published network is current
+        run: node desk/tools/agentify/scripts/build_network.mjs desk/trust_desk.hocon --manifest desk/agent-manifest.json --check
+      - name: Assemble the site (no tests, no build tools)
+        run: |
+          mkdir _site
+          cp -R desk/. _site/
+          rm -rf _site/tests _site/tools
+          # .well-known/ starts with a dot; without this file Pages' Jekyll step would drop it.
+          touch _site/.nojekyll
+          test -f _site/agent-manifest.json && test -f _site/trust_desk.network.json && test -f _site/links.json
+          test -f _site/.well-known/nsdeploy.json && test -f _site/runtime/index.js
+          if grep -rl "seed_hex" _site; then echo "test vectors must not be published"; exit 1; fi
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
