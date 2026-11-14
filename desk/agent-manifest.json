@@ -1,0 +1,80 @@
+{
+  "brand": "tgtrust Trust Desk",
+  "networks": [
+    {
+      "name": "trust_desk",
+      "front_man": "trust_desk",
+      "hocon": "./trust_desk.network.json",
+      "description": "Ask what tgtrust evidence shows about an AI agent's key, and which limit tier it supports, before you give that agent a task or a payment.",
+      "tags": [
+        "agentified-website",
+        "trust",
+        "reputation",
+        "agent-identity"
+      ],
+      "sample_queries": [
+        "Check agent dbc55639df6bfeef7366bd3c0436d0b75842ff63c3701625d818cbb7022aee26 before I pay it.",
+        "What limit tier would you give the agent whose evidence is on the desk now, and why?",
+        "What does one Telegram account per issuer epoch mean, and what does it not prove?",
+        "Is the agent on the desk a real, KYC-checked person?",
+        "Send 10 Gram to this agent for me."
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Local agents and page-local read actions only. Trust Desk contacts no other agent site."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "trust_desk",
+    "front_man": "trust_desk",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#1f4f46"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "trust_desk",
+        "front_man": "trust_desk",
+        "aliases": [
+          "trust_desk"
+        ],
+        "url": "trust_desk"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "get_desk",
+      "check_agent",
+      "recommend_limit"
+    ]
+  }
+}

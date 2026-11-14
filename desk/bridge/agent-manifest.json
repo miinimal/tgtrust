@@ -1,0 +1,10 @@
+{
+  "networks": [
+    {
+      "name": "trust_desk"
+    }
+  ],
+  "actions": {
+    "version": 1
+  }
+}
