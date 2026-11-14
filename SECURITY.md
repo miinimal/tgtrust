@@ -19,8 +19,9 @@ The threat model is in [docs/THREAT_MODEL.md](docs/THREAT_MODEL.md). Known limit
 - The issuer is a single trusted party (path A): it can refuse service or issue extra credentials; it cannot
   link a credential to a Telegram account.
 - The arbiter key can slash stakes; in production it must be a multisig.
-- Signatures over real Telegram init data have been checked only with a stand-in key so far
-  (see [docs/REAL_TELEGRAM_CHECK.md](docs/REAL_TELEGRAM_CHECK.md)).
+- The automated tests check Telegram signatures with a stand-in key. Real Telegram-signed init data was
+  verified by hand on 2026-11-12 ([docs/REAL_TELEGRAM_CHECK.md](docs/REAL_TELEGRAM_CHECK.md)), and the Mini App
+  ran once inside a real Telegram client on 2026-11-13 ([docs/HOLDER_MINI_APP.md](docs/HOLDER_MINI_APP.md)).
 - The HTTP rate limit is per process and in memory; run one issuer process behind a TLS reverse proxy and set
   `TGTRUST_TRUST_FORWARDED_FOR=1` only when that proxy appends the client address.
 - The Mini App's Content Security Policy is set in the page; a hosting proxy should also send it as a header.

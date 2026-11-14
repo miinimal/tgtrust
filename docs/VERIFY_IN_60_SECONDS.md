@@ -91,7 +91,9 @@ verdict: upheld -> on-chain Slash fields:
 Proves: on your machine, two agents register through a local issuer, a second agent for the same Telegram account is refused, bob checks alice's badge, a deal is recorded only because both parties signed it, and a dispute verdict produces the fields a slash would use. Does not prove: anything outside this process. The issuer and ledger live in memory and vanish when the script ends, Telegram's signing key is a stand-in, and the "on-chain Slash fields" are only printed: no transaction is built or sent, and no TON testnet or mainnet contract is touched.
 ## What this page does not cover
 
-- No real Telegram init data was checked; that needs a live Mini App and is still pending.
+- No real Telegram init data is checked on this page. Real init data was verified by hand on 2026-11-12
+  (`docs/REAL_TELEGRAM_CHECK.md`), and the Mini App ran once in a real Telegram client on 2026-11-13
+  (`docs/HOLDER_MINI_APP.md`).
 - The stake contract exists on TON testnet only; this page never reads it.
 - No EVM registration exists, and none is read from a chain.
 - Mainnet is not planned before an external audit.

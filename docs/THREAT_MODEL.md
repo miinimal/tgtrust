@@ -57,11 +57,15 @@
   could set it. Not changed in this release (it would change the signed bytes).
 - **The fuzz is in-process.** It does not cover uvicorn or a reverse proxy in front of it, and it checks that
   errors are 4xx, not that every message is useful.
-- **Real Telegram data is still unchecked.** Signature tests use a stand-in key until the owner runs `docs/REAL_TELEGRAM_CHECK.md`.
+- **Real Telegram data is checked by hand, not in tests.** The automated signature tests use a stand-in key.
+  Real Telegram-signed init data was verified once by hand on 2026-11-12 (`docs/REAL_TELEGRAM_CHECK.md`).
 - **Timing links issuance and registration** when the holder lets the Mini App register a new agent at once: the
   service sees both requests seconds apart from one address. Stored data still proves nothing; holders who need
   strict anonymity paste their own public key and register later from the agent (`docs/HOLDER_MINI_APP.md`).
 - **Agent key in browser storage.** In the "create a key here" way the key stays in the page's storage until the
   holder confirms the file is saved. Browser arithmetic (BigInt) is not constant-time.
-- **The Mini App has not run inside a real Telegram client.** Tests replace Telegram's script with a stub.
+- **The Mini App in a real Telegram client is checked by hand, not in tests.** On 2026-11-13 the owner opened it
+  from @tgtrust_agents_bot (bot id 9071003754) in his own Telegram account, created test agent
+  `2d3a788e…2ebd1da` with it, and `check` against the public demo issuer returned `verified`. That is one manual
+  run; the automated tests still replace Telegram's script with a stub.
 - **Testnet only.** No mainnet deployment before an external audit and a legal review.

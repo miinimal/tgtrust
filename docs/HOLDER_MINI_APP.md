@@ -67,9 +67,11 @@ The Node and browser tests are skipped when Node or Playwright is not installed.
 
 ## Not verified
 
-- The page has not been opened inside a real Telegram client; tests replace Telegram's script with a stub that
-  supplies init data signed by a stand-in key. See `docs/REAL_TELEGRAM_CHECK.md` for the owner's check of real
-  init data; the same bot can host this page.
+- Inside a real Telegram client the page was checked once, by hand, not by the tests: on 2026-11-13 the owner
+  opened it from @tgtrust_agents_bot (bot id 9071003754) in his own account, created test agent
+  `2d3a788e…2ebd1da`, and `check` against the public demo issuer returned `verified`. The automated tests replace
+  Telegram's script with a stub that supplies init data signed by a stand-in key. See `docs/REAL_TELEGRAM_CHECK.md`
+  for the separate check of real init data on 2026-11-12.
 - No published RFC 9474 test vector is included. Correctness rests on agreement between two independent
   implementations (this code and the Python one) and two independent standard verifiers (`cryptography` and
   WebCrypto).
