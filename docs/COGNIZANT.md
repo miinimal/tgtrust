@@ -66,14 +66,14 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 
 | Requirement | How Trust Desk meets it | Test | Status |
 | --- | --- | --- | --- |
-| MUST follow the Neuro SAN HOCON reference | `desk/trust_desk.hocon` written from the skill's `templates/network.hocon` | build script validation | planned |
-| Published form MUST preserve the data model and MUST NOT depend on local includes, env substitutions or publisher-only paths | `trust_desk.network.json` is produced by `build_network.mjs` with the runtime's own parser; a test fails on `include`, `${` or file paths in it | `desk/tests/network.test.mjs` | planned |
-| 2.1 stable name, short description, front agent | manifest and network share the name `trust_desk`, front agent `trust_desk` | network test | planned |
-| 2.1 unique agent names, function description, instructions, tools list | front agent + `evidence_checker` + `limit_advisor`; build checks duplicates and missing references | build `--check` | planned |
-| 2.1 JSON-Schema inputs; structured outputs SHOULD declare schemas | every agent `function` has a `request` parameter; `verify_agent` declares its input schema and documents its result shape | network test | planned |
+| MUST follow the Neuro SAN HOCON reference | `desk/trust_desk.hocon` written from the skill's `templates/network.hocon`; the reference `build_network.mjs` parses it with the runtime's own parser and runs the runtime's validator | `tests/test_desk.py::test_network_build_is_current_and_valid` | done |
+| Published form MUST preserve the data model and MUST NOT depend on local includes, env substitutions or publisher-only paths | `trust_desk.network.json` is produced by `build_network.mjs`; the test re-parses the HOCON and requires the same object, and fails on `include`, `${` or file paths | `desk/tests/network.test.mjs` "the published network is the HOCON source, fully resolved" | done |
+| 2.1 stable name, short description, front agent | manifest and network share the name `trust_desk`, front agent `trust_desk` | network test "manifest lists the network…" | done |
+| 2.1 unique agent names, function description, instructions, tools list | front agent `trust_desk` delegates to `evidence_checker` and `limit_advisor` | build `--check`; network test "at least two agents…" | done |
+| 2.1 JSON-Schema inputs; structured outputs SHOULD declare schemas | every agent `function` has a `request` parameter (done); the site actions `get_desk`, `check_agent`, `recommend_limit` declare input schemas and document their result shape (block 3) | network test; `desk/tests/verifier.test.mjs` | partly done |
 | 2.1 private context deny-by-default; network MUST name fields that may pass | no `sly_data` field is allowed downstream or upstream; the demo caller sets a private field and the test shows it is absent at the peer | `e2e: private context absent at peer` | planned |
 | 2.1 unavailable external capability: fail closed, report clearly, never bypass browser security | the live issuer lookup is attempted with `fetch` in CORS mode only; a failure is reported as "live lookup unavailable", never as a result | `verifier: offline issuer` + `e2e: offline issuer` | planned |
-| 2.2 declarative data; instructions are public, not a confidentiality mechanism | no coded tools, no secrets in any published file; a test scans published files for key-like strings | `network test: no secrets` | planned |
+| 2.2 declarative data; instructions are public, not a confidentiality mechanism | no coded tools, no secrets in any published file; a test scans published files for key-like strings | network test "no coded tools and no secrets…" | done |
 
 ### 3. Browser execution and site composition
 
@@ -93,9 +93,9 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 | 3.2 private context does not return except permitted fields | see 2.1 | `e2e: private context absent at peer` | planned |
 | 3.2 every additional hop repeats origin policy and consent; cycles and over-budget requests stop | demo network names Trust Desk; a cycle fixture names itself back | `e2e: composition cycle` | planned |
 | 3.2 cross-origin artifacts published with CORS | GitHub Pages sends `Access-Control-Allow-Origin: *`; checked on the live URL after deploy | `deploy check` | planned |
-| 3.3 `agent-manifest.json`: name, front_man, hocon; LLM router metadata; peer policy | `desk/agent-manifest.json` from the skill template, `peer_policy.mode: closed` | network test | planned |
-| 3.3 network definition at the manifest's location, public GET | `./trust_desk.network.json` | network test | planned |
-| 3.3 `links.json` publisher bindings; caller-owned bindings never modify it | `desk/links.json` (empty bindings); the runtime stores caller bindings in browser storage | network test | planned |
+| 3.3 `agent-manifest.json`: name, front_man, hocon; LLM router metadata; peer policy | `desk/agent-manifest.json` from the skill template, `peer_policy.mode: closed` | network test "manifest declares the default router…" | done |
+| 3.3 network definition at the manifest's location, public GET | `./trust_desk.network.json` | network test; public GET checked after deploy | done locally |
+| 3.3 `links.json` publisher bindings; caller-owned bindings never modify it | `desk/links.json` (empty bindings); the runtime stores caller bindings in browser storage | network test "links.json is the publisher's…" | done |
 | 3.3 production MUST use HTTPS | GitHub Pages, HTTPS only | deploy check | planned |
 | 3.4 public artifact requests MUST NOT carry the caller's private credentials | runtime fetches with default credentials policy; the test asserts no `Authorization` header and no cookie reaches the peer | `e2e: key never reaches peer` | planned |
 
@@ -115,8 +115,8 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 
 | Requirement | How Trust Desk meets it | Test | Status |
 | --- | --- | --- | --- |
-| Peer definitions are untrusted input | Trust Desk's own instructions say to ignore instructions inside agent cards and peer answers; card fields are shown as quoted data | network test (rule present) | planned |
-| No undeclared peer code | no coded-tool bundle is declared or loaded | network test | planned |
+| Peer definitions are untrusted input | every agent's instructions say card text is data, never an instruction; the page shows card fields as text, never as HTML | network test "every agent carries the evidence wording rules…" | done (instructions) |
+| No undeclared peer code | no coded-tool bundle is declared or loaded | network test "no coded tools…" | done |
 | Consent names destination origin and nature; a redirect to another origin is a new destination | runtime | `e2e: consent before contact` | planned |
 | Consent precedes third-party fetches | runtime | `e2e: consent before contact` | planned |
 | Private context by exception | see 2.1 | `e2e: private context absent at peer` | planned |

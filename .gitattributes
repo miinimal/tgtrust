@@ -1,0 +1,4 @@
+# The browser runtime and the reference build tools are byte-for-byte copies of
+# cognizant-ai-labs/agentic-web; desk/tools/agentify/RUNTIME.sha256 checks them. Never convert line endings.
+desk/runtime/** -text
+desk/tools/agentify/** -text
