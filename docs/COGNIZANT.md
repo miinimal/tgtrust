@@ -173,6 +173,16 @@ Finding while mirroring: `gate.py` gives the Concordium tier to a `verified` key
 only to a `staked` one; `docs/TRUST_GATE.md` said "as above", which read as staked only. The table now says what the
 code does, and the desk's published policy text says the same.
 
+## Deploy
+
+`.github/workflows/pages.yml` publishes `desk/` to GitHub Pages at `https://miinimal.github.io/tgtrust/` when `desk/`
+changes on `main`, or by hand. It checks that the published network is current, copies `desk/` without `tests/` and
+`tools/`, adds `.nojekyll` so `.well-known/` is kept, refuses to publish the test vectors, and deploys with
+`actions/deploy-pages`. `tests/test_desk_pages.py` assembles the same folder and opens it under `/tgtrust/` in
+Chromium. Before the first run, the owner enables Pages once: Settings → Pages → Source: GitHub Actions. After the
+first deploy: the network URL is `https://miinimal.github.io/tgtrust/trust_desk`, and the rows marked "after deploy"
+are checked on the live URL (HTTPS, CORS on the public files, the page in Safari on an iPhone).
+
 ## Open decisions
 
 - **Second origin for the public demo.** The spec's examples give no public second origin we may use: the
