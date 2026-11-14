@@ -168,6 +168,50 @@ def test_live_badge_shows_wording_and_network_label(browser, site):
         ctx.close()
 
 
+def test_credential_and_signed_challenge_give_verified(browser, tmp_path):
+    """The whole offline path in the browser: a credential from a pinned issuer, bound to the key, plus the key's
+    signature over this page's challenge (made with `python -m tgtrust.client sign-request`'s code)."""
+    import shutil
+
+    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+
+    from tgtrust import gate
+    from tgtrust.client import AgentIdentity
+
+    vectors = json.loads((DESK / "tests" / "vectors.json").read_text(encoding="utf-8"))
+    issuer = {**vectors["issuers"]["main"], "url": "https://issuer.example/v1",
+              "label": "test issuer for this check (may be offline)", "scheme": "RSABSSA-SHA384-PSSZERO-Deterministic",
+              "read_at": "2026-11-14"}
+    site_dir = tmp_path / "desk"
+    shutil.copytree(DESK, site_dir, ignore=shutil.ignore_patterns("tests", "tools"))
+    (site_dir / "issuers.js").write_text(f"export const ISSUERS = Object.freeze({json.dumps([issuer])});\n",
+                                         encoding="utf-8")
+    alice = vectors["agents"][0]
+    agent = AgentIdentity(Ed25519PrivateKey.from_private_bytes(bytes.fromhex(alice["seed_hex"])))
+    with serve(site_dir) as url:
+        ctx, page, outside, errors = open_desk(browser, url)
+        try:
+            path = page.text_content("#challenge-command").split("--path ")[1]
+            assert page.text_content("#challenge-text") == f"POST {path} (empty body)"
+            headers = gate.sign_request(agent, "POST", path, b"")
+            page.fill("#f-key", alice["public_hex"])
+            page.click("#more-evidence summary")
+            page.fill("#f-credential", json.dumps(vectors["credentials"][0]["file"]))
+            page.fill("#f-proof", json.dumps(headers))
+            page.click("#check-button")
+            page.locator("#result-meta", has_text="Checked").wait_for()
+            assert page.text_content("#result-state") == "Verified"
+            assert "the key signed the desk's challenge" in check_text(page, "proof")
+            assert "one Telegram account per issuer epoch (issuer-attested), owner not disclosed; bound to this key" \
+                in check_text(page, "credential")
+            # The badge was not read (live lookups off), so the gate holds the proven key at "unknown".
+            assert page.text_content("#tier-now") == "unknown"
+            assert outside.requests == [] and errors == []
+            shot(page, "verified")
+        finally:
+            ctx.close()
+
+
 def test_bad_input_is_explained_in_the_form(browser, site):
     ctx, page, _, errors = open_desk(browser, site, phone=True)
     try:

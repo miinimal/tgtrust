@@ -26,6 +26,8 @@ function el(tag, className, text) {
 export class DeskPage {
   static async start() {
     $("challenge-text").textContent = DeskPage.challengeText();
+    $("challenge-command").textContent =
+      `python -m tgtrust.client sign-request --key-file agent.key --path ${desk.challenge().path}`;
     $("network-url").textContent = new URL("trust_desk", new URL("./", document.baseURI)).href;
     DeskPage.renderLive();
     $("desk-form").addEventListener("submit", (e) => {
