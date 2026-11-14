@@ -28,7 +28,7 @@ and which test proves it. The Status column is updated by each block.
 | Rule (official rules unless noted) | How Trust Desk meets it | Status |
 | --- | --- | --- |
 | Working open agentic website, standard open web technologies, conforming to the spec "as of the start of the Submission Period" | Static HTML, CSS and ES modules; the spec text has not changed since 2026-11-10 | planned |
-| Publicly accessible, runs consistently in a current browser | GitHub Pages over HTTPS; Playwright runs in Chromium at desktop and phone sizes | planned |
+| Publicly accessible, runs consistently in a current browser | GitHub Pages over HTTPS (block 6); `tests/test_desk_page.py` runs Chromium at 1280 px and 390 px, light and dark | done locally |
 | URL must contain a publicly accessible conforming `.json` network file | `desk/trust_desk.network.json`, built from `desk/trust_desk.hocon` with the reference build script | planned |
 | A `runtime` file that runs the network in the browser | `desk/runtime/`, the skill's runtime copied unchanged | planned |
 | An interface for users or agents to interact with the network | the chat panel, and the desk form that runs the same grounded action without a model | planned |
@@ -79,7 +79,7 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 
 | Requirement | How Trust Desk meets it | Test | Status |
 | --- | --- | --- | --- |
-| Usable from a normal web page, executes the graph in JavaScript | `desk/index.html` boots the runtime with `site.js` | e2e boot | planned |
+| Usable from a normal web page, executes the graph in JavaScript | `desk/index.html` boots the runtime with `site.js` (from the skill template); the desk itself works when the assistant cannot load | `tests/test_desk_page.py` (Chromium, phone and desktop, light and dark, no console errors) | done |
 | 3.1 reject malformed networks, duplicate or missing references, invalid front agent, unsupported executables before any model call | runtime validator; the demo serves a broken network and the test asserts the visible error and zero router requests | `e2e: invalid network` | planned |
 | 3.1 agent loop with tool calls, delegation, error propagation, bounded history | runtime; a scripted model drives `trust_desk → evidence_checker → website_check_agent` | `actions.test.mjs`; `e2e: delegation + grounded action` | done (runtime), e2e planned |
 | 3.1 ask before discovering or calling a third-party MCP service | Trust Desk declares no MCP server | n/a | planned |
@@ -109,7 +109,7 @@ the runtime provides a behaviour, the test still proves it on Trust Desk's own f
 | A peer's manifest cannot replace the router | the demo peer fixture names another router; the test asserts all model requests still go to the caller's router | `e2e: peer cannot change router` | planned |
 | Missing key MUST stop the model call with a clear setup error | test sends a chat message with no key and asserts the error text and zero router requests | `e2e: missing key` | planned |
 | Stored profiles can be deleted | test saves, deletes, reloads and asserts storage is empty | `e2e: delete profile` | planned |
-| SHOULD minimise third-party scripts and use a restrictive CSP | no third-party scripts; CSP in a `<meta>` tag (GitHub Pages cannot send headers) | `network test: csp` | planned |
+| SHOULD minimise third-party scripts and use a restrictive CSP | no third-party scripts or fonts; CSP in a `<meta>` tag (GitHub Pages cannot send headers): `script-src 'self'`, no eval, `object-src 'none'`, `frame-src 'self'`; `connect-src` allows https so a visitor's BYOK router works | `test_desk_page.py` runs every check under that CSP | done |
 
 ### 5. Security and privacy
 
