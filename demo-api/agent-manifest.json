@@ -1,0 +1,79 @@
+{
+  "brand": "Paid API operator desk",
+  "networks": [
+    {
+      "name": "paid_api_desk",
+      "front_man": "api_gatekeeper",
+      "hocon": "./paid_api_desk.network.json",
+      "description": "Decide whether a paid API serves an incoming AI agent request, on prepay or on credit, from the agent's proven key and Trust Desk's tier.",
+      "tags": [
+        "agentified-website",
+        "demo"
+      ],
+      "sample_queries": [
+        "Should we serve the request in the queue, and on what terms?",
+        "Ask Trust Desk which tier an agent with a proven key and an unread badge gets.",
+        "Serve the request in the queue on prepay.",
+        "Refund the last caller."
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.otari.ai/api/v1",
+    "mock": false,
+    "byok_router": "https://api.otari.ai/api/v1"
+  },
+  "allowed_peers": [
+    "https://miinimal.github.io"
+  ],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "Calls tgtrust Trust Desk (the origin in allowed_peers) only after the visitor agrees on a card."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "paid_api_desk",
+    "front_man": "api_gatekeeper",
+    "available": false,
+    "reason": "This is a static bundle; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#3a3f8f"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "paid_api_desk",
+        "front_man": "api_gatekeeper",
+        "aliases": [
+          "paid_api_desk",
+          "api_gatekeeper"
+        ],
+        "url": "paid_api_desk"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "bridge": "./bridge/action-bridge.html",
+    "agentTools": [
+      "inspect_caller",
+      "serve_request"
+    ]
+  }
+}

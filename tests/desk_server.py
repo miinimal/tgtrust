@@ -16,6 +16,31 @@ NODE = shutil.which("node")
 
 
 @contextmanager
+def serve_static(folder: Path):
+    """Serve a folder the way GitHub Pages does: every file with Access-Control-Allow-Origin: *, any subpath."""
+    import functools
+    import threading
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+
+    class Handler(SimpleHTTPRequestHandler):
+        def end_headers(self):
+            self.send_header("Access-Control-Allow-Origin", "*")
+            super().end_headers()
+
+        def log_message(self, *args):
+            pass
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), functools.partial(Handler, directory=str(folder)))
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        yield f"http://127.0.0.1:{server.server_address[1]}/"
+    finally:
+        server.shutdown()
+        server.server_close()
+
+
+@contextmanager
 def serve(folder: Path, open_as: str = "127.0.0.1", log: Path | None = None):
     """Start the server on a free port; yield its base URL ending in '/'."""
     args = [NODE, str(SERVE), str(folder), "--port", "0", "--open-as", open_as]

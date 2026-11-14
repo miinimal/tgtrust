@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; worker-src 'self' blob:; frame-src 'self' https: http://localhost:* http://127.0.0.1:*; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <title>Paid API operator desk (demo)</title>
+  <link rel="stylesheet" href="demo.css">
+  <script type="module" src="demo-page.js"></script>
+  <script type="module" src="site.js"></script>
+</head>
+<body>
+  <header class="wrap top">
+    <p class="tag">Demo site · second origin for tgtrust Trust Desk</p>
+    <h1>Paid API operator desk</h1>
+    <p class="lede">A data API that sells reports to AI agents. Before it serves an unknown agent on credit, its assistant checks the caller's signature here and asks <a id="desk-link" href="https://miinimal.github.io/tgtrust/">tgtrust Trust Desk</a>, another agentic website, which tier fits. Nothing is charged; serving only marks the request on this page.</p>
+  </header>
+
+  <main class="wrap">
+    <section class="panel" aria-labelledby="queue-title">
+      <h2 id="queue-title">Queue</h2>
+      <div id="queue-empty"><p>No request yet.</p></div>
+      <dl id="queue" class="facts" hidden>
+        <dt>Request</dt><dd id="q-id"></dd>
+        <dt>Caller key</dt><dd><code id="q-agent"></code></dd>
+        <dt>Asks for</dt><dd><code id="q-path"></code></dd>
+        <dt>Price</dt><dd id="q-price"></dd>
+        <dt>Tier</dt><dd id="q-tier">not inspected</dd>
+        <dt>Status</dt><dd id="q-status">waiting</dd>
+      </dl>
+      <div class="row">
+        <button type="button" id="new-request">New request</button>
+        <label class="toggle"><input type="checkbox" id="simulate-timeout"> Simulate an upstream timeout when serving</label>
+      </div>
+      <p class="fine">Serve calls so far: <span id="serve-calls">0</span>. A timeout is reported as an unknown outcome and never retried by the runtime.</p>
+    </section>
+
+    <section id="assistant" class="assistant" aria-labelledby="assistant-heading">
+      <h2 id="assistant-heading">Assistant</h2>
+      <p class="assistant-note">Your messages and the results the assistant reads go to the AI provider you choose below. When it asks Trust Desk, you approve each contact on a card first; Trust Desk's agents then run in this browser on your provider and key, and Trust Desk never receives the key.</p>
+      <p id="assistant-status" role="status">Connecting the assistant…</p>
+      <div id="agent-app">
+        <div data-ns-slot="header"></div>
+        <div class="assistant-panels">
+          <div data-ns-slot="chat"></div>
+          <div data-ns-slot="agents"></div>
+        </div>
+        <div data-ns-slot="settings"></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
