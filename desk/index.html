@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https: http://localhost:* http://127.0.0.1:*; worker-src 'self' blob:; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Check what tgtrust evidence shows about an AI agent's key, and which limit tier it supports, before you give that agent a task or a payment. An open agentic website.">
+  <title>tgtrust Trust Desk</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="desk.css">
+  <script type="module" src="desk-page.js"></script>
+  <script type="module" src="site.js"></script>
+</head>
+<body>
+  <a class="skip" href="#desk">Skip to the desk</a>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="./" aria-label="tgtrust Trust Desk, home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 4 7v8c0 7.5 5.1 13.7 12 15 6.9-1.3 12-7.5 12-15V7L16 2Z" fill="currentColor"/><path d="m10.5 16.2 3.8 3.8 7.4-7.6" fill="none" stroke="var(--on-accent)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>tgtrust</strong> Trust Desk</span>
+      </a>
+      <nav class="top-links" aria-label="Site">
+        <a href="#how">How it works</a>
+        <a href="#assistant">Ask the desk</a>
+        <a href="#for-agents">For agent sites</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <h1 id="hero-title">Check an AI agent before you give it a task or a payment.</h1>
+      <p class="lede">Paste an agent's key or agent card. Trust Desk checks the signatures in your browser and says what tgtrust evidence actually shows: a Telegram-checked credential, stake, co-signed deal records, disputes and a Concordium binding. Then it recommends a limit tier. It never says more than the evidence shows.</p>
+    </section>
+
+    <section id="desk" class="wrap desk" aria-labelledby="desk-title">
+      <div class="panel input-panel">
+        <h2 id="desk-title">The desk</h2>
+        <div class="samples" role="group" aria-labelledby="samples-label">
+          <span id="samples-label" class="samples-label">Try a sample:</span>
+          <button type="button" class="chip" data-sample="concordium">Concordium demo agent</button>
+          <button type="button" class="chip" data-sample="fresh">Agent that signs the challenge</button>
+          <button type="button" class="chip" data-sample="forged">Forged credential</button>
+        </div>
+        <form id="desk-form" novalidate>
+          <label for="f-key">Agent key or agent card <span class="hint">64 hex characters, or the card's JSON</span></label>
+          <textarea id="f-key" name="key" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="dbc55639df6b… or { &quot;capabilities&quot;: … }"></textarea>
+          <details class="more" id="more-evidence">
+            <summary>More evidence <span class="hint">optional</span></summary>
+            <label for="f-credential">Credential file <span class="hint">tgtrust-credential/v1, from the holder Mini App</span></label>
+            <textarea id="f-credential" name="credential" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="{ &quot;format&quot;: &quot;tgtrust-credential/v1&quot;, … }"></textarea>
+            <label for="f-proof">Signature over the challenge <span class="hint">the four X-Tgtrust-* headers as JSON</span></label>
+            <textarea id="f-proof" name="proof" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="{ &quot;X-Tgtrust-Agent&quot;: …, &quot;X-Tgtrust-Signature&quot;: … }"></textarea>
+            <p class="challenge">Challenge to sign (tgtrust-req/v1, valid 120 s): <code id="challenge-text">…</code> <button type="button" class="link-button" id="copy-challenge">Copy</button></p>
+          </details>
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <div class="actions">
+            <button type="submit" class="primary" id="check-button">Check agent</button>
+            <button type="reset" class="quiet">Clear</button>
+          </div>
+        </form>
+        <div class="live" id="live-box">
+          <div class="live-head">
+            <span class="live-title">Live lookups</span>
+            <span class="pill" id="live-state">Off</span>
+          </div>
+          <p class="live-text" id="live-text">Off by default. Signed evidence is checked in your browser without contacting anyone. To also read the public badge and the Concordium binding, allow Trust Desk to contact:</p>
+          <ul class="live-origins" id="live-origins"></ul>
+          <button type="button" class="secondary" id="live-toggle" aria-pressed="false">Allow for this tab</button>
+        </div>
+      </div>
+
+      <div class="panel result-panel" aria-live="polite" aria-busy="false" id="result-panel">
+        <div class="empty" id="result-empty">
+          <h2>Result</h2>
+          <p>Nothing on the desk yet. Paste a key or a card, or try a sample.</p>
+          <ul class="legend">
+            <li><span class="state verified">Verified</span> the caller holds the key and tgtrust evidence backs it</li>
+            <li><span class="state partial">Partial</span> some evidence checks out, not enough to rely on</li>
+            <li><span class="state unknown">Unknown</span> nothing could be checked</li>
+            <li><span class="state invalid">Invalid</span> evidence was presented that does not check out</li>
+          </ul>
+        </div>
+        <div class="result" id="result" hidden>
+          <div class="result-head">
+            <span class="state" id="result-state">…</span>
+            <code class="key" id="result-key"></code>
+          </div>
+          <p class="summary" id="result-summary"></p>
+          <div class="tier" id="result-tier">
+            <div><span class="tier-label">Recommended tier now</span><strong id="tier-now">…</strong><span class="tier-meaning" id="tier-now-meaning"></span></div>
+            <div><span class="tier-label">Once the key signs the challenge</span><strong id="tier-proven">…</strong><span class="tier-meaning" id="tier-proven-meaning"></span></div>
+          </div>
+          <h3 class="checks-title">Evidence, check by check</h3>
+          <ol class="checks" id="result-checks"></ol>
+          <details class="raw">
+            <summary>Gate evidence lines</summary>
+            <pre id="result-evidence"></pre>
+          </details>
+          <p class="checked-at" id="result-meta"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="wrap how" aria-labelledby="how-title">
+      <h2 id="how-title">How it works</h2>
+      <ol class="steps">
+        <li><strong>Who holds the key.</strong> The agent signs the desk's challenge with its Ed25519 key (<code>tgtrust-req/v1</code>). A card that only names a key is a claim.</li>
+        <li><strong>What the issuer attested.</strong> A tgtrust credential is a blind RSA signature (RFC 9474) bound to the key: one Telegram account per issuer epoch (issuer-attested), owner not disclosed. Checked offline against the pinned issuer key.</li>
+        <li><strong>What is at stake and on record.</strong> With live lookups on: registration, stake with its network label, co-signed deal records, disputes, and the key's Concordium Agent Registry binding.</li>
+        <li><strong>What limit fits.</strong> The tier comes from the rules of <code>tgtrust.gate</code>: denied, prepay only, or credit up to a limit. The calling site decides; Trust Desk moves no money.</li>
+      </ol>
+      <p class="fine">Signatures are checked with your browser's own WebCrypto. Nothing you paste leaves this page unless you allow live lookups, or you ask the assistant below, which sends your messages and the results it reads to the AI provider you choose. The demo issuer runs on a single machine and may be offline; the desk then says "live lookup unavailable" and uses signed data only.</p>
+    </section>
+
+    <section id="assistant" class="wrap assistant" aria-labelledby="assistant-heading">
+      <h2 id="assistant-heading">Ask the desk</h2>
+      <p>The desk's agents read the same evidence: ask what it shows about the agent on the desk, which tier fits and why, or what a check does not prove.</p>
+      <p class="assistant-note">Your messages and the results the agents read go to the AI provider you choose in the settings below. The default is hosted Otari with alibaba/qwen3.8-flash; your key stays in this browser and is sent only to that provider.</p>
+      <p id="assistant-status" role="status">Connecting the assistant… If this message stays, the assistant could not load. You can still use the desk above.</p>
+      <div id="agent-app">
+        <div data-ns-slot="header"></div>
+        <div class="assistant-panels">
+          <div data-ns-slot="chat"></div>
+          <div data-ns-slot="agents"></div>
+        </div>
+        <div data-ns-slot="settings"></div>
+      </div>
+    </section>
+
+    <section id="for-agents" class="wrap for-agents" aria-labelledby="for-agents-title">
+      <h2 id="for-agents-title">For agent sites</h2>
+      <p>Trust Desk is an open agentic website (Worldwide Agentic Web MVP spec, profile 0.2). Another site's agent network can load it after its visitor agrees, and run it in that visitor's browser on the caller's own model and key.</p>
+      <dl class="facts">
+        <dt>Network URL</dt><dd><code id="network-url">…/trust_desk</code></dd>
+        <dt>Manifest</dt><dd><a href="agent-manifest.json">agent-manifest.json</a></dd>
+        <dt>Network</dt><dd><a href="trust_desk.network.json">trust_desk.network.json</a> (agents <code>trust_desk</code>, <code>evidence_checker</code>, <code>limit_advisor</code>)</dd>
+        <dt>Links</dt><dd><a href="links.json">links.json</a></dd>
+        <dt>Verifier module</dt><dd><a href="verifier.js">verifier.js</a>: import it to check tgtrust evidence in your own page</dd>
+      </dl>
+      <p class="fine">A calling site's agents get none of this page's tools, so they can ask for the policy and the wording, not for a live check. Verify the evidence on your side with the verifier module.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-row">
+      <span>tgtrust · Apache-2.0 · <a href="https://github.com/miinimal/tgtrust">Source</a> · <a href="https://github.com/miinimal/tgtrust/blob/main/docs/COGNIZANT.md">Conformance map</a></span>
+      <span>Testnet stake contract; demo issuer with a test policy.</span>
+    </div>
+  </footer>
+</body>
+</html>

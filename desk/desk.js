@@ -169,7 +169,9 @@ export class Desk {
     const c = this.challenge();
     const proof = caseData.proof ? { method: c.method, path: c.path, headers: caseData.proof, body: new Uint8Array(0),
       nonces: new NonceCache(120) } : null;
-    const result = await assess({ key, card: caseData.card, credential: caseData.credential, proof,
+    // A key that came only from a card stays a claim: do not also list it as a key the visitor typed.
+    const typedKey = caseData.key || (caseData.card ? null : key);
+    const result = await assess({ key: typedKey, card: caseData.card, credential: caseData.credential, proof,
       issuers: this.issuers, now: this.clock(), live: { badge: live.badge, link: live.link } });
     result.source = caseData.source;
     result.cardLink = live.cardLink || null;
