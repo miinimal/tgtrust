@@ -54,6 +54,7 @@
             <label for="f-proof">Signature over the challenge <span class="hint">the four X-Tgtrust-* headers as JSON</span></label>
             <textarea id="f-proof" name="proof" rows="3" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="{ &quot;X-Tgtrust-Agent&quot;: …, &quot;X-Tgtrust-Signature&quot;: … }"></textarea>
             <p class="challenge">Challenge to sign (tgtrust-req/v1, valid 120 s): <code id="challenge-text">…</code> <button type="button" class="link-button" id="copy-challenge">Copy</button></p>
+            <p class="challenge">An agent signs it with: <code id="challenge-command">…</code></p>
           </details>
           <p id="form-error" class="form-error" role="alert" hidden></p>
           <div class="actions">

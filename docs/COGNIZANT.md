@@ -34,8 +34,8 @@ and which test proves it. The Status column is updated by each block.
 | An interface for users or agents to interact with the network | the chat panel, and the desk form that runs the same grounded action without a model | done |
 | Optional interface to configure LLMs and keys | the runtime's ⚙ AI model settings panel (BYOK) | done |
 | The network interacts with the website, and may call or be called by other agentic websites | grounded site actions `get_desk`, `check_agent`, `recommend_limit`; the second-origin demo site calls Trust Desk as a partner network | done locally |
-| Text description, screenshots | Devpost draft at the end of this file | planned |
-| Video under 2 minutes, browser footage, "the Entrant explaining the Project (not AI generated)" (overview page), public on YouTube, no third-party trademarks or music | script at the end of this file; the owner records and narrates it himself | planned |
+| Text description, screenshots | Devpost draft below; screenshots from `TGTRUST_SHOTS=<dir> pytest tests/test_desk_page.py` | drafted; owner submits |
+| Video under 2 minutes, browser footage, "the Entrant explaining the Project (not AI generated)" (overview page), public on YouTube, no third-party trademarks or music | script at the end of this file; the owner records and narrates it himself | script ready; owner records |
 | If the project uses Mozilla Otari: Otari account email and one sentence on a problem met (overview page) | the default router is hosted Otari, so the owner fills both fields on the form | owner |
 | English, or English translation of all materials | all code, docs and UI in English | done |
 | Free, without restriction, for testing until the Judging Period ends (2027-01-18 17:00 PT) | static site, no account; the desk form needs no key | after deploy |
@@ -182,6 +182,78 @@ changes on `main`, or by hand. It checks that the published network is current, 
 Chromium. Before the first run, the owner enables Pages once: Settings → Pages → Source: GitHub Actions. After the
 first deploy: the network URL is `https://miinimal.github.io/tgtrust/trust_desk`, and the rows marked "after deploy"
 are checked on the live URL (HTTPS, CORS on the public files, the page in Safari on an iPhone).
+
+## Video script (under 2 minutes, recorded and narrated by the entrant)
+
+About 260 spoken words, about 1 min 50 s. Screen: the live site in a browser; the face or voice of the entrant. No
+music, no third-party logos. Each part names what is on screen.
+
+1. **(0:00–0:15) The problem.** *On screen: the Trust Desk page.* "Agents are starting to hire and pay other agents.
+   The agentic web spec says that validating a peer network gives no trust in it, and lists identity and reputation
+   as future work. Trust Desk is that missing step: you ask it before you give an unknown agent a task or a payment."
+2. **(0:15–0:40) Evidence, checked in the browser.** *Click "Agent that signs the challenge", then "Forged
+   credential".* "Here a fresh agent signs the desk's challenge with its key. Trust Desk checks the signature right
+   here in the browser: the key is proven, but it has no registration, so the result is partial. Now a forged
+   credential: the issuer's signature does not verify, and the desk says invalid. It never says more than the
+   evidence shows."
+3. **(0:40–1:00) Live evidence, with consent.** *Click "Concordium demo agent", then "Allow for this tab".* "Live
+   lookups are off until I allow them, and the page names every site it will contact. Now it reads the Concordium
+   Agent Registry: this key is bound to an identity-verified account on mainnet. A Telegram credential means one
+   Telegram account per issuer epoch; the owner is not disclosed. And the tier: denied now, until the key signs."
+4. **(1:00–1:35) Another agentic site calls Trust Desk.** *Switch to the paid API demo; ask the assistant.* "This is a
+   different site, a paid API. Its agent checks the caller, then asks Trust Desk. A card asks me first, naming Trust
+   Desk and its origin. Trust Desk's agents run here in my browser, on my model and key; Trust Desk never gets the
+   key. Only the request id is shared. Serving the request needs my confirmation."
+5. **(1:35–1:55) Why it matters.** *The conformance map on GitHub.* "Every check in section 6 of the spec has an
+   automated test, including the error cases. The verifier is a module any agentic site can reuse. That is Trust Desk: trust
+   from evidence, not from claims."
+
+## Devpost text (draft; nothing is submitted)
+
+**Name:** tgtrust Trust Desk
+
+**Tagline:** Ask before you trust: check an AI agent's evidence before you give it a task or a payment.
+
+**What it does.** Trust Desk is an open agentic website. Paste an AI agent's public key or agent card, and it says
+what tgtrust evidence actually shows about that key, with the source of every line: whether the caller holds the
+key (an Ed25519 signature over the desk's challenge), a Telegram-checked credential (one Telegram account per issuer
+epoch, issuer-attested, owner not disclosed), stake with its network label, co-signed deal records, disputes, and the
+key's Concordium Agent Registry binding. It then recommends a limit tier with the same rules as tgtrust's trust gate
+for paid APIs: denied, prepay only, or credit up to a limit. Signed evidence is verified in the browser; live
+lookups happen only after the visitor allows them; if the issuer is offline the desk says so and uses signed data
+only. Other agentic websites can load Trust Desk's network after their visitor agrees, and run it on their own model
+and key.
+
+**How we built it.** A three-agent Neuro SAN network (`trust_desk`, `evidence_checker`, `limit_advisor`) built and
+validated with the agentify-website skill's own build script, the reference browser runtime copied unchanged, and
+three read-only site actions backed by a browser verifier. The verifier mirrors tgtrust's Python checks (cards,
+blind-RSA credentials, request signatures, tiers, Concordium reads) and is proved equal on test vectors the Python
+code produces. A second site, a paid API's operator desk, calls Trust Desk across origins. Every section 6 check of
+the spec runs in Chromium against two real origins with a scripted router: consent before contact, the key and
+router staying with the caller, private context only for named fields, and visible errors for an invalid network, a
+cycle, an over-budget call and a denied origin.
+
+**Challenges.** A peer network gets none of the host page's tools, so a calling site cannot ask Trust Desk for a live
+check; it asks for the policy and wording and verifies the evidence itself with the published verifier module. A
+static site cannot hold a publisher's model key, so the chat uses the visitor's key while the desk form needs none.
+
+**What's new in this period.** Everything in Trust Desk, from 2026-11-14; the tgtrust layer beneath it was published
+from 2026-11-12 (see "What is new" above).
+
+**What's next.** A signed badge from the issuer so live facts verify offline too; Trust Desk as an MCP service; more
+issuers.
+
+**Built with:** JavaScript, WebCrypto, Neuro SAN HOCON, the agentic-web browser runtime, Python, FastAPI, Concordium
+Agent Registry, TON (testnet), Playwright.
+
+**Links:** site `https://miinimal.github.io/tgtrust/` (after Pages is enabled), source
+`https://github.com/miinimal/tgtrust`, conformance map `docs/COGNIZANT.md`.
+
+**Screenshots:** a partial result for a fresh agent, the forged credential, the live Concordium check, the consent card
+on the demo site, the confirmation dialog.
+
+**Otari fields (owner):** the Otari account email, and one sentence on a problem met with Otari, from the owner's own
+run with a real key.
 
 ## Open decisions
 

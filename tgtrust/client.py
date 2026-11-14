@@ -355,12 +355,21 @@ def _cli(argv: list[str] | None = None, *, transport: Transport | None = None) -
     bind.add_argument("--key-file", required=True, help="agent key file made by new-key")
     bind.add_argument("--account", required=True, help="your Concordium account address")
     bind.add_argument("--network", choices=["testnet", "mainnet"], default="testnet")
+    sign = sub.add_parser("sign-request", allow_abbrev=False,
+                          help="prove this agent holds its key: print tgtrust-req/v1 headers for one request "
+                               "(for example Trust Desk's challenge); nothing is sent")
+    sign.add_argument("--key-file", required=True, help="agent key file made by new-key, or agent.json")
+    sign.add_argument("--method", default="POST", help="HTTP method, upper case (default POST)")
+    sign.add_argument("--path", required=True, help="the path with its query, exactly as it will be sent")
+    sign.add_argument("--body-file", help="file holding the exact request body (default: empty body)")
     args = parser.parse_args(argv)
 
     if args.command == "check":
         return _check(args, transport)
     if args.command == "concordium-bind":
         return _concordium_bind(args)
+    if args.command == "sign-request":
+        return _sign_request(args)
 
     try:
         if args.command == "new-key":
@@ -459,6 +468,33 @@ def _key_from_card_arg(card: str) -> str:
         if len(raw) > CARD_MAX_BYTES:
             raise ValueError(f"card is larger than {CARD_MAX_BYTES} bytes")
     return agent_key_from_card(json.loads(raw))
+
+
+def _sign_request(args) -> int:
+    """Print the tgtrust-req/v1 headers as JSON: paste them into Trust Desk or send them with the request."""
+    from .gate import GateError, sign_request
+
+    try:
+        agent = read_agent_key(args.key_file)
+    except (OSError, ValueError, KeyError):
+        try:
+            agent = AgentIdentity.from_agent_file(args.key_file)
+        except (OSError, ValueError, KeyError) as exc:
+            print(f"ERROR: {exc}")
+            return 1
+    try:
+        body = b""
+        if args.body_file:
+            with open(args.body_file, "rb") as fh:
+                body = fh.read()
+        headers = sign_request(agent, args.method, args.path, body)
+    except (OSError, GateError) as exc:
+        print(f"ERROR: {exc}")
+        return 1
+    print(json.dumps(headers, indent=1))
+    print("These headers prove the key for this one request for about 120 seconds. They contain no private key.",
+          file=sys.stderr)
+    return 0
 
 
 def _concordium_bind(args) -> int:
