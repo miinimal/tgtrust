@@ -86,7 +86,7 @@ The desk's published policy, the same rules as tgtrust.gate (amounts are in the 
 - unknown: key proven, but level unknown or revoked, the badge could not be read, or more than 0 disputes upheld against it. Prepay only.
 - verified: key proven, level verified, or staked with less than 0.5 Gram or a withdrawing stake. Prepay only.
 - staked: key proven, level staked with at least 0.5 Gram active. Credit up to 1000.
-- staked+concordium: as staked, and the key's CIS-8 binding is Active and its Verified by Concordium badge is valid on the named network. Credit up to 5000.
+- staked+concordium: key proven, level verified or staked, no upheld disputes beyond the limit, and the key's CIS-8 binding is Active and its Verified by Concordium badge is valid on Concordium testnet. Credit up to 5000.
 Tiers are checked from the strongest down; the first one met wins.
 """
         }
