@@ -1,0 +1,13 @@
+{
+  "name": "tgtrust-action-log-anchor",
+  "private": true,
+  "type": "module",
+  "description": "Anchor a tgtrust action log head on Concordium testnet (RegisterData)",
+  "scripts": {
+    "anchor": "node anchor.mjs"
+  },
+  "dependencies": {
+    "@concordium/web-sdk": "12.0.2",
+    "@grpc/grpc-js": "1.14.7"
+  }
+}
